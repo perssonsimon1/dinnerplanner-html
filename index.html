@@ -1,38 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinner planner</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dinner planner</title>
 
-  </head>
-  <body>
-	<div class="container">
-		<h1>Dinner planner</h1>
-		<div id="exampleView">
-			<div>
-				Number of guests: <span id="numberOfGuests"></span>
+	<link rel="stylesheet" href="./styles.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+
+
+</head>
+
+<body>
+	<h1 class="title my-0">Dinner planner</h1>
+	<div class="container-float overflow-hidden">
+		<div class="row mx-0">
+			<div id="sidebar" class="col-sm-12 col-md-4 col-lg-3 mx-0">
+				<div id="sidebar-toggle" class='btn-toolbar pull-right'>
+					<div class='btn-group'>
+						<button type='button' id="sidebar-toggle" class='btn btn-primary'>Toggle</button>
+					</div>
+				</div>
+				<h4>My Dinner</h4>
+				<div id="sidebar-hidden-part">
+					<div>People</div>
+					<input type="number" min="0" id="people">
+					<table id="sidebarTable">
+						<tr class="border">
+							<th>Dish Name</th>
+							<th>Cost</th>
+						</tr>
+					</table>
+
+					<button class="btn btn-light">Confirm order</button>
+				</div>
+				<h5 id="total-due">Total: $75</h5>
 			</div>
-			<div>
-          <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+
+			<div class="col-sm-12 col-md col-lg px-0">
+				<div id="welcomeView" class="col-12"></div>
+				<div id="goBackView" class="col-12"></div>
+				<div id="dishSearchView" class="col-12">
+					<h5>Find a dish</h5>
+
+					<div class="row">
+						<div class="col-12">
+							<input type="text" id="dish">
+						</div>
+						<div class="col-12">
+							<select name="category" id="options">
+								<option value="dinner">All</option>
+							</select>
+						</div>
+						<div class="col-12">
+							<button id="search" class="btn btn-light">Search</button>
+						</div>
+					</div>
+				</div>
+				<div id="dishItemView" class="col-12 px-0">
+					<div id="dishrows" class="row food border border-dark justify-content-center mx-auto"></div>
+				</div>
+				<div id="dinnerPrintoutView" class="col-12"></div>
+				<div id="dishDetailsView" class="row pl-3"></div>
+				<div id="dinnerOverView" class="row w-100 mx-0 my-0">
+					<div id="dinnerRows" class="row food border border-dark justify-content-center mx-auto w-100">
+
+					</div>
+					<div class="row justify-content-center w-100 col-md-12 m-4">
+						<button id="print" class="btn btn-light align-self-center">Print Full Recipe</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
+	<script src="js/view/welcomeView.js"></script>
+	<script src="js/view/sidebarView.js"></script>
+	<script src="js/view/dishSearchView.js"></script>
+	<script src="js/view/dishItemView.js"></script>
+	<script src="js/view/goBackView.js"></script>
+	<script src="js/view/dinnerPrintoutView.js"></script>
+	<script src="js/view/dishDetailsView.js"></script>
+	<script src="js/view/dinnerOverView.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
-  </body>
+</body>
+
 </html>

@@ -1,0 +1,130 @@
+.title {
+    background-color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    padding: 30px;
+}
+
+#goBackView {
+    background-color: grey;
+    height: 100px;
+}
+
+
+.content {
+    margin: 0;
+    padding: 0;
+}
+
+#total-due {
+    margin: 10px 10px;
+}
+
+#sidebar {
+    padding: 30px;
+    margin: 0;
+    border: 1px solid black;
+}
+
+#sidebar table {
+    padding: 15px auto;
+    width: 100%;
+}
+
+#sidebar table th {
+    background-color: grey;
+}
+
+#sidebar-toggle {
+    display: none;
+    float: right;
+}
+
+
+/*
+.center-image {
+    margin: 5px auto;
+}
+*/
+@media only screen and (max-width: 768px) {
+
+    #sidebar-hidden-part {
+        display: none;
+    }
+
+    #sidebar {
+        margin: 0px 10px;
+    }
+
+    .avdelare {
+        display: none;
+    }
+
+    #sidebar-toggle {
+        display: initial;
+    }
+
+
+}
+
+.dish-item {
+    background-color: #dbdde0;
+    margin: 15px;
+    padding: 0;
+    max-width: 150px;
+}
+
+
+#dishItemView {
+    height: 100%;
+}
+
+
+.food [class*='col-'] {
+    min-width: 150px;
+    margin-bottom: 15px;
+}
+
+#dishSearchView {
+    padding: 15px;
+    border: 1px solid black;
+}
+
+
+#dinnerPrintoutView .media {
+    margin: 10px 0px;
+}
+
+.avdelare {
+    height: 180px;
+    width: 1px;
+    margin: 25px;
+    /*border: black;*/
+    background-color: #969696;
+    /*margin-top: 25px;*/
+}
+
+#dinnerPrintoutView img {
+    padding: 10px 10px;
+    width: 100px;
+}
+
+.lyft {
+    margin-bottom: 6px;
+}
+
+#dishDetailsView .ingr-table {
+    background-color: lightyellow;
+    margin: 10px 0px;
+}
+
+#sidebarTable {
+    margin: 10px 0px;
+}
+
+/*
+.full-pagee{
+    position: fixed;
+    height: 100vh;
+}
+*/
