@@ -1,5 +1,10 @@
-var DinnerPrintoutView = function (container, model) {
-    function createPrintout(dish) {
+class DinnerPrintoutView {
+    
+    constructor(container, model) {
+        container.append(model.getDishes().map(createPrintout));    
+    }
+    
+    createPrintout(dish) {
         const box = document.createElement('div');
         box.classList.add('media');
 
@@ -37,6 +42,5 @@ var DinnerPrintoutView = function (container, model) {
         box.append(preparationBox);
         return box;
     }
-
-    container.append(model.getDishes().map(createPrintout));
+    
 }
