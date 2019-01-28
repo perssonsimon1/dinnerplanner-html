@@ -1,7 +1,11 @@
-var DishItemView = function (container, model) {
-    var rows = container.find("#dishrows");
+class DishItemView {
+    
+    constructor(container, model) {
+        var rows = container.find("#dishrows");
+        rows.append(model.getDishes().map(createItem))
+    }
 
-    function createItem(dish) {
+    createItem(dish) {
         var div = document.createElement('div');
         ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
         var paragraph = document.createElement('p');
@@ -17,5 +21,5 @@ var DishItemView = function (container, model) {
         return div;
     }
 
-    rows.append(model.getDishes().map(createItem))
+    
 }
