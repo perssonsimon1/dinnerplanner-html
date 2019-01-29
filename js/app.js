@@ -43,6 +43,7 @@ window.onload = function () {
 	}
 
 	function showDishSearch() {
+		console.log('Hello again')
 		hide(dinnerOverContainer);
 		show(sidebarContainer);
 		hide(welcomeContainer);
@@ -95,7 +96,14 @@ window.onload = function () {
 		element.style.display = 'none'
 	}
 
-
+	const searchViewBtns = document.querySelectorAll(".searchView-btn");
+	console.log(searchViewBtns)
+	searchViewBtns.forEach(btn => {
+		btn.addEventListener("click", ()=>{ 
+			console.log("Hello");
+			showDishSearch();
+		});
+	});
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * query for elements in the whole document.

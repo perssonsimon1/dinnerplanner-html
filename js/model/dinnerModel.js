@@ -1,12 +1,11 @@
 //DinnerModel Object constructor
 class DinnerModel {
 
-
 	constructor() {
 		this.numberOfGuests = 3;
 		this.menu = [];
 		this.dishes = dishesConst;
-		this._observers = [];
+		this.observers = [];
 	}
 
 
@@ -17,16 +16,6 @@ class DinnerModel {
 	addObserver(observer){
 		this._observers.push(observer);
 	 }
-
-	 notifyObservers(changeDetails) {
-		for(var i=0; i<this._observers.length; i++) {
-			  this._observers[i].update(this, changeDetails);
-		}	
-	  }
-
-	removeObserver(observer){  
-		this._observers.filter(d => d!=observer);
-	}
 
 	setNumberOfGuests(num) {
 		if (num >= 0) this.numberOfGuests = num;
