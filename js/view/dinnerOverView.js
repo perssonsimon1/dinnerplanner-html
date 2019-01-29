@@ -4,15 +4,14 @@ class DinnerOverView {
         this.container = container;
         this.model = model;
         this.render(this.container, this.model);
-
-
     }
 
     render(container, model) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
-
-        this.model.getFullMenu().map(this.createItem).forEach(element => rows.appendChild(element));
+        const numberOfGuests = model.getNumberOfGuests();
+        this.model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
+            .forEach(element => rows.appendChild(element));
 
         total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');

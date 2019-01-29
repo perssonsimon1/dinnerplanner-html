@@ -9,7 +9,7 @@ class DinnerPrintoutView {
 
     render(container, model) {
         console.log('Rerendering...')
-        model.getDishes().map(this.createPrintout).forEach(element => this.container.appendChild(element));
+        model.getFullMenu().map(this.createPrintout).forEach(element => this.container.appendChild(element));
     }
 
     createPrintout(dish) {
