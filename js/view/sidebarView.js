@@ -1,20 +1,23 @@
 /** @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var SidebarView = function (container, model) {
+class SidebarView {
+    constructor(container, model) {
+        this.model = model;
+        this.container = container;
 
-    const peopleinput = container.find("#people");
-    const total = container.find('#total-due');
+        const peopleInput = document.querySelector("#people");
+        const total = document.querySelector('#total-due');
 
-    const sidebarTable = container.find('#sidebarTable');
-    sidebarTable.append(model.getFullMenu().map(dish => createTableRow(dish)))
+        const sidebarTable = document.querySelector('#sidebarTable');
+        sidebarTable.append(model.getFullMenu().map(dish => this.createTableRow(dish)))
 
-    var numberOfGuests = model.getNumberOfGuests();
-    peopleinput.val(numberOfGuests);
-    total.html('Total: $' + model.getTotalMenuPrice());
+        var numberOfGuests = this.model.getNumberOfGuests();
+        peopleInput.value = numberOfGuests;
+        total.innerHTML = 'Total: $' + this.model.getTotalMenuPrice();
+    }
 
-
-    function createTableRow(dish) {
+    createTableRow(dish) {
         const row = document.createElement('tr');
         const name = document.createElement('td');
         name.innerHTML = dish.name;
@@ -22,12 +25,11 @@ var SidebarView = function (container, model) {
         cost.innerHTML = 'SEK ' +
             dish.ingredients
             .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
 
         row.appendChild(name);
         row.appendChild(cost);
         return row;
     }
-
 
 }

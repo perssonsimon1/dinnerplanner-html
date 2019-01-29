@@ -1,6 +1,9 @@
 class DishDetailsView {
-    
-    constructor (container, model) {
+
+    constructor(container, model) {
+        this.container = container;
+        this.model = model;
+
         const dish = model.getDishes()[0];
 
         const overviewBox = document.createElement('div');
@@ -33,7 +36,7 @@ class DishDetailsView {
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
         dish.ingredients
-            .map(ingr => ingredientsRow(ingr))
+            .map(ingr => this.ingredientsRow(ingr))
             .forEach(row => tableBody.appendChild(row));
 
         table.appendChild(tableBody);

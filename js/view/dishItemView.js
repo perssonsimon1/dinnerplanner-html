@@ -1,8 +1,10 @@
 class DishItemView {
-    
+
     constructor(container, model) {
-        var rows = container.find("#dishrows");
-        rows.append(model.getDishes().map(createItem))
+        this.container = container;
+        this.model = model;
+        var rows = container.querySelector("#dishrows");
+        rows.append(model.getDishes().map(this.createItem))
     }
 
     createItem(dish) {
@@ -21,5 +23,5 @@ class DishItemView {
         return div;
     }
 
-    
+
 }

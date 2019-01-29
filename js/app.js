@@ -1,18 +1,18 @@
-$(function () {
+window.onload = function () {
 	//We instantiate our model
-	var model = new DinnerModel();
+	const model = new DinnerModel();
 	model.addDishToMenu(1);
 	model.addDishToMenu(2);
 	model.addDishToMenu(100);
 
-	var sidebarContainer = $("#sidebar");
-	var welcomeContainer = $("#welcomeView");
-	var dishSearchContainer = $("#dishSearchView");
-	var dishItemContainer = $("#dishItemView");
-	var dinnerPrintoutContainer = $("#dinnerPrintoutView");
-	var goBackContainer = $("#goBackView");
-	var dishDetailsContainer = $("#dishDetailsView");
-	var dinnerOverContainer = $("#dinnerOverView")
+	var sidebarContainer = document.querySelector("#sidebar");
+	var welcomeContainer = document.querySelector("#welcomeView");
+	var dishSearchContainer = document.querySelector("#dishSearchView");
+	var dishItemContainer = document.querySelector("#dishItemView");
+	var dinnerPrintoutContainer = document.querySelector("#dinnerPrintoutView");
+	var goBackContainer = document.querySelector("#goBackView");
+	var dishDetailsContainer = document.querySelector("#dishDetailsView");
+	var dinnerOverContainer = document.querySelector("#dinnerOverView")
 
 
 	var sidebarView = new SidebarView(sidebarContainer, model);
@@ -26,9 +26,9 @@ $(function () {
 
 	// showWelcome();
 	// showDishSearch();
-    // showDinnerPrintout();
+	// showDinnerPrintout();
 	showDishDetails();
-    //	showDinnerOver();
+	//	showDinnerOver();
 
 	function showWelcome() {
 		dinnerOverContainer.hide();
@@ -93,4 +93,4 @@ $(function () {
 	 * of the specific view you're working with (see exampleView.js).
 	 */
 
-});
+};
