@@ -1,82 +1,88 @@
-var DishDetailsView = function (container, model) {
-    const dish = model.getDishes()[0];
+class DishDetailsView {
 
-    const overviewBox = document.createElement('div');
-    ['col-sm-12', 'col-md-6', 'p-3'].forEach(css => overviewBox.classList.add(css));
+    constructor(container, model) {
+        this.container = container;
+        this.model = model;
 
-    const title = document.createElement('h4');
-    title.innerHTML = dish.name;
+        const dish = model.getDishes()[0];
 
-    const image = document.createElement('img');
-    image.src = './images/' + dish.image;
+        const overviewBox = document.createElement('div');
+        ['col-sm-12', 'col-md-6', 'p-3'].forEach(css => overviewBox.classList.add(css));
 
-    const desc = document.createElement('p');
-    desc.innerHTML = dish.type;
+        const title = document.createElement('h4');
+        title.innerHTML = dish.name;
 
-    const goBackBtn = document.createElement('button');
-    goBackBtn.innerHTML = "Back to search";
-    ['btn', 'btn-light'].forEach(cssClass => goBackBtn.classList.add(cssClass));
+        const image = document.createElement('img');
+        image.src = './images/' + dish.image;
 
-    overviewBox.appendChild(title);
-    overviewBox.appendChild(image);
-    overviewBox.appendChild(desc);
-    overviewBox.appendChild(goBackBtn);
+        const desc = document.createElement('p');
+        desc.innerHTML = dish.type;
 
-    const ingredientsBox = document.createElement('div');
-    ['col-sm-12', 'col-md-6', 'ingr-table', 'p-3'].forEach(css => ingredientsBox.classList.add(css));
+        const goBackBtn = document.createElement('button');
+        goBackBtn.innerHTML = "Back to search";
+        ['btn', 'btn-light'].forEach(cssClass => goBackBtn.classList.add(cssClass));
 
-    const ingredientsTitle = document.createElement('h5');
-    ingredientsTitle.innerHTML = 'Ingredients for ' + model.getNumberOfGuests() + ' people';
+        overviewBox.appendChild(title);
+        overviewBox.appendChild(image);
+        overviewBox.appendChild(desc);
+        overviewBox.appendChild(goBackBtn);
 
-    const table = document.createElement('table');
-    const tableBody = document.createElement('tbody');
-    dish.ingredients
-        .map(ingr => ingredientsRow(ingr))
-        .forEach(row => tableBody.appendChild(row));
+        const ingredientsBox = document.createElement('div');
+        ['col-sm-12', 'col-md-6', 'ingr-table', 'p-3'].forEach(css => ingredientsBox.classList.add(css));
 
-    table.appendChild(tableBody);
+        const ingredientsTitle = document.createElement('h5');
+        ingredientsTitle.innerHTML = 'Ingredients for ' + model.getNumberOfGuests() + ' people';
 
-    const tableFooter = document.createElement('tfoot');
-    const footerRow = document.createElement('tr');
-    const empt1 = document.createElement('td');
-    const empt2 = document.createElement('td');
-    const totalPrice = document.createElement('td');
-    totalPrice.innerHTML = 'SEK ' +
+        const table = document.createElement('table');
+        const tableBody = document.createElement('tbody');
         dish.ingredients
-        .map(ingr => ingr.price)
-        .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
+            .map(ingr => this.ingredientsRow(ingr))
+            .forEach(row => tableBody.appendChild(row));
 
-    footerRow.appendChild(empt1);
-    footerRow.appendChild(empt2);
-    footerRow.appendChild(totalPrice);
-    tableFooter.appendChild(footerRow);
-    table.appendChild(tableFooter);
+        table.appendChild(tableBody);
 
-    const addToMenuBtn = document.createElement('button');
-    addToMenuBtn.innerHTML = 'Add to menu';
-    ['btn', 'btn-light'].forEach(cssClass => addToMenuBtn.classList.add(cssClass));
+        const tableFooter = document.createElement('tfoot');
+        const footerRow = document.createElement('tr');
+        const empt1 = document.createElement('td');
+        const empt2 = document.createElement('td');
+        const totalPrice = document.createElement('td');
+        totalPrice.innerHTML = 'SEK ' +
+            dish.ingredients
+            .map(ingr => ingr.price)
+            .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
 
-    ingredientsBox.appendChild(ingredientsTitle);
-    ingredientsBox.appendChild(table);
-    ingredientsBox.appendChild(addToMenuBtn);
+        footerRow.appendChild(empt1);
+        footerRow.appendChild(empt2);
+        footerRow.appendChild(totalPrice);
+        tableFooter.appendChild(footerRow);
+        table.appendChild(tableFooter);
 
-    const preparationBox = document.createElement('div');
-    ['col-sm-12', 'col-md-6'].forEach(css => preparationBox.classList.add(css));
+        const addToMenuBtn = document.createElement('button');
+        addToMenuBtn.innerHTML = 'Add to menu';
+        ['btn', 'btn-light'].forEach(cssClass => addToMenuBtn.classList.add(cssClass));
 
-    const preparationTitle = document.createElement('h4');
-    preparationTitle.innerHTML = "Preparation";
-    const preparationText = document.createElement('p');
-    preparationText.innerHTML = dish.description;
+        ingredientsBox.appendChild(ingredientsTitle);
+        ingredientsBox.appendChild(table);
+        ingredientsBox.appendChild(addToMenuBtn);
 
-    preparationBox.appendChild(preparationTitle);
-    preparationBox.appendChild(preparationText);
+        const preparationBox = document.createElement('div');
+        ['col-sm-12', 'col-md-6'].forEach(css => preparationBox.classList.add(css));
+
+        const preparationTitle = document.createElement('h4');
+        preparationTitle.innerHTML = "Preparation";
+        const preparationText = document.createElement('p');
+        preparationText.innerHTML = dish.description;
+
+        preparationBox.appendChild(preparationTitle);
+        preparationBox.appendChild(preparationText);
 
 
-    container.append(overviewBox);
-    container.append(ingredientsBox);
-    container.append(preparationBox);
+        container.append(overviewBox);
+        container.append(ingredientsBox);
+        container.append(preparationBox);
+    }
 
-    function ingredientsRow(ingredient) {
+    ingredientsRow(ingredient) {
         const row = document.createElement('tr');
 
         const amount = document.createElement('td');

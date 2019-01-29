@@ -12,10 +12,14 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var DishSearchView = function (container, model) {
-    dishSearchContainer = container.find('#dishSearchView');
+class DishSearchView {
 
-    const optionsMenu = dishSearchContainer.find("#options");
-    optionsMenu.append(new Option("Side dish", "Tasty"));
-    const btnText = "search"
+    constructor(container, model) {
+        this.container = container;
+        this.model = model;
+
+        const optionsMenu = this.container.querySelector("#options");
+        optionsMenu.append(new Option("Side dish", "Tasty"));
+        const btnText = "search"
+    }
 }

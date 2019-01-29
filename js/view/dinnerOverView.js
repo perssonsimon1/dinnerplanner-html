@@ -1,14 +1,37 @@
-var DinnerOverView = function (container, model) {
-    var total = document.createElement('p');
-    var currprice = 0;
-    var rows = container.find("#dinnerRows");
+class DinnerOverView {
+    constructor(container, model) {
+        this.container = container;
+        this.model = model;
 
-    function createItem(dish) {
+        var total = document.createElement('p');
+        var rows = container.querySelector("#dinnerRows");
+
+        const items = this.model.getFullMenu().map(this.createItem);
+        rows.append(items);
+
+        total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
+        var hallare = document.createElement('div');
+        var avdelare = document.createElement('div');
+        var nydiv = document.createElement('div');
+        nydiv.appendChild(total);
+        avdelare.classList.add("avdelare");
+        nydiv.classList.add("d-flex")
+        nydiv.classList.add("align-self-end");
+        nydiv.classList.add("lyft");
+        hallare.classList.add("row");
+        hallare.classList.add("col-md-1");
+        hallare.classList.add("col-sm-12");
+        hallare.append(avdelare);
+        hallare.append(nydiv);
+        rows.append(hallare);
+    }
+
+    createItem(dish, numberOfGuests) {
         var outerdiv = document.createElement('div');
         var price = document.createElement('p');
-        currprice = dish.ingredients
+        const currprice = dish.ingredients
             .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val) * numberOfGuests;
         price.innerHTML = currprice + ' SEK';
         var div = document.createElement('div');
         ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
@@ -28,22 +51,5 @@ var DinnerOverView = function (container, model) {
 
         return outerdiv;
     }
-
-    rows.append(model.getFullMenu().map(createItem));
-    total.innerHTML = ' Total:' + "<br>" + model.getTotalMenuPrice() + ' SEK';
-    var hallare = document.createElement('div');
-    var avdelare = document.createElement('div');
-    var nydiv = document.createElement('div');
-    nydiv.appendChild(total);
-    avdelare.classList.add("avdelare");
-    nydiv.classList.add("d-flex")
-    nydiv.classList.add("align-self-end");
-    nydiv.classList.add("lyft");
-    hallare.classList.add("row");
-    hallare.classList.add("col-md-1");
-    hallare.classList.add("col-sm-12");
-    hallare.append(avdelare);
-    hallare.append(nydiv);
-    rows.append(hallare);
 
 }
