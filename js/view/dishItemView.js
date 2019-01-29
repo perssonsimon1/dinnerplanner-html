@@ -4,7 +4,7 @@ class DishItemView {
         this.container = container;
         this.model = model;
         var rows = container.querySelector("#dishrows");
-        rows.append(model.getDishes().map(this.createItem))
+        this.model.getDishes().map(this.createItem).forEach(element => rows.appendChild(element));
     }
 
     createItem(dish) {

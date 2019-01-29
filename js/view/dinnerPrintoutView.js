@@ -3,7 +3,7 @@ class DinnerPrintoutView {
     constructor(container, model) {
         this.container = container;
         this.model = model;
-        container.append(model.getDishes().map(this.createPrintout));
+        model.getDishes().map(this.createPrintout).forEach(element => this.container.appendChild(element));
     }
 
     createPrintout(dish) {

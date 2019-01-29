@@ -6,7 +6,9 @@ class DinnerOverView {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
 
-        rows.append(this.model.getFullMenu().map(this.createItem));
+        const items = this.model.getFullMenu().map(this.createItem);
+        rows.append(items);
+
         total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');
         var avdelare = document.createElement('div');
@@ -24,12 +26,12 @@ class DinnerOverView {
         rows.append(hallare);
     }
 
-    createItem(dish) {
+    createItem(dish, numberOfGuests) {
         var outerdiv = document.createElement('div');
         var price = document.createElement('p');
-        currprice = dish.ingredients
+        const currprice = dish.ingredients
             .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val) * numberOfGuests;
         price.innerHTML = currprice + ' SEK';
         var div = document.createElement('div');
         ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
