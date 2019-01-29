@@ -11,7 +11,7 @@ class SidebarView {
         const total = document.querySelector('#total-due');
 
         const sidebarTable = document.querySelector('#sidebarTable');
-        sidebarTable.append(model.getFullMenu().map(dish => this.createTableRow(dish)))
+        model.getFullMenu().map(dish => this.createTableRow(dish)).forEach(row => sidebarTable.appendChild(row));
 
         var numberOfGuests = this.model.getNumberOfGuests();
         peopleInput.value = numberOfGuests;

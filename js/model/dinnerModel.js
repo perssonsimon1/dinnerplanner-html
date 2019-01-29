@@ -24,6 +24,7 @@ class DinnerModel extends Observable {
 		super();
 		this.numberOfGuests = 3;
 		this.menu = [];
+		this.currentDish = 0;
 		this.dishes = dishesConst;
 	}
 
