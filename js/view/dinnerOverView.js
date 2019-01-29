@@ -6,14 +6,14 @@ class DinnerOverView {
         this.render(this.container, this.model);
     }
 
-    render(container) {
+    render(container, model) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
         const numberOfGuests = model.getNumberOfGuests();
-        this.model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
+        model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
             .forEach(element => rows.appendChild(element));
 
-        total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
+        total.innerHTML = ' Total:' + "<br>" + model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');
         var avdelare = document.createElement('div');
         var nydiv = document.createElement('div');

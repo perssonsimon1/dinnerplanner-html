@@ -75,6 +75,9 @@ window.onload = function () {
 	const dinnerOverView = new DinnerOverView(dinnerOverContainer, model);
 
 	const dinnerOverViewController = new DinnerOverViewController(generalController, dinnerOverContainer, model);
+	const goBackController = new GoBackController(generalController, goBackContainer, model);
+	const sidebarController = new SidebarController(generalController, sidebarContainer, model);
+	const welcomeController = new DinnerOverViewController(generalController, welcomeContainer, model);
 
 	generalController.addScreen('WELCOME', [welcomeContainer]);
 	generalController.addScreen('DISH_SEARCH', [sidebarContainer, dishSearchContainer, dishItemContainer]);
