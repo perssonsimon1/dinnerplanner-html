@@ -4,11 +4,12 @@ class DinnerOverView {
         this.container = container;
         this.model = model;
         this.render(this.container, this.model);
+        model.addObserver(this);
 
 
     }
 
-    render(container, model) {
+    render(container) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
 

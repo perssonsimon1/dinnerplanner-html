@@ -97,6 +97,8 @@ window.onload = function () {
 			showDishSearch();
 		});
 	});
+
+
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * query for elements in the whole document.
