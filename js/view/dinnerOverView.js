@@ -1,29 +1,32 @@
 class DinnerOverView {
     constructor(container, model) {
+        model.addObserver(this);
         this.container = container;
         this.model = model;
+        this.render(this.container, this.model);
 
+
+    }
+
+    render(container, model) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
 
-        const items = this.model.getFullMenu().map(this.createItem);
-        rows.append(items);
+        this.model.getFullMenu().map(this.createItem).forEach(element => rows.appendChild(element));
 
         total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');
         var avdelare = document.createElement('div');
         var nydiv = document.createElement('div');
         nydiv.appendChild(total);
-        avdelare.classList.add("avdelare");
-        nydiv.classList.add("d-flex")
-        nydiv.classList.add("align-self-end");
-        nydiv.classList.add("lyft");
-        hallare.classList.add("row");
-        hallare.classList.add("col-md-1");
-        hallare.classList.add("col-sm-12");
-        hallare.append(avdelare);
-        hallare.append(nydiv);
-        rows.append(hallare);
+
+        avdelare.classList.add('avdelare');
+        nydiv.classList.add('d-flex', 'align-self-end', 'lyft');
+        hallare.classList.add('row', 'col-md-1', 'col-sm-12');
+
+        hallare.appendChild(avdelare);
+        hallare.appendChild(nydiv);
+        rows.appendChild(hallare);
     }
 
     createItem(dish, numberOfGuests) {
@@ -34,7 +37,7 @@ class DinnerOverView {
             .reduce((acc, val) => acc + val) * numberOfGuests;
         price.innerHTML = currprice + ' SEK';
         var div = document.createElement('div');
-        ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
+        div.classList.add('dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum');
         var paragraph = document.createElement('p');
         paragraph.innerHTML = dish.name;
         var image = document.createElement('img');
@@ -42,7 +45,7 @@ class DinnerOverView {
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');
-        ['align-self-end', 'my-0'].forEach(cssClass => paragraph.classList.add(cssClass));
+        paragraph.classList.add('align-self-end', 'my-0');
         div.appendChild(image);
         div.appendChild(paragraph);
         price.classList.add("float-right");
@@ -50,6 +53,12 @@ class DinnerOverView {
         outerdiv.appendChild(price);
 
         return outerdiv;
+    }
+
+    update(change) {
+        if (change.var == 'numberOfGuests') {
+            render();
+        }
     }
 
 }

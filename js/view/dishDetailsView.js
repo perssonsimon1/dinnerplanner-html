@@ -1,6 +1,7 @@
 class DishDetailsView {
 
     constructor(container, model) {
+        model.addObserver(this);
         this.container = container;
         this.model = model;
 

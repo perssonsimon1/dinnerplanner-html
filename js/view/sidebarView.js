@@ -3,6 +3,7 @@
  */
 class SidebarView {
     constructor(container, model) {
+        model.addObserver(this);
         this.model = model;
         this.container = container;
 

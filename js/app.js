@@ -25,11 +25,11 @@ window.onload = function () {
 	const dishDetailsView = new DishDetailsView(dishDetailsContainer, model);
 	const dinnerOverView = new DinnerOverView(dinnerOverContainer, model);
 
-	showWelcome();
+	// showWelcome();
 	// showDishSearch();
 	// showDinnerPrintout();
 	// showDishDetails();
-	// showDinnerOver();
+	showDinnerOver();
 
 	function showWelcome() {
 		hide(dinnerOverContainer);
