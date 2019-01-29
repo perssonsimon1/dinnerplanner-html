@@ -8,7 +8,7 @@ class DishDetailsView {
         const dish = model.getDishes()[0];
 
         const overviewBox = document.createElement('div');
-        ['col-sm-12', 'col-md-6', 'p-3'].forEach(css => overviewBox.classList.add(css));
+        overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
 
         const title = document.createElement('h4');
         title.innerHTML = dish.name;
@@ -21,7 +21,7 @@ class DishDetailsView {
 
         const goBackBtn = document.createElement('button');
         goBackBtn.innerHTML = "Back to search";
-        ['btn', 'btn-light'].forEach(cssClass => goBackBtn.classList.add(cssClass));
+        goBackBtn.classList.add('btn', 'btn-light','searchView-btn');
 
         overviewBox.appendChild(title);
         overviewBox.appendChild(image);
@@ -29,7 +29,7 @@ class DishDetailsView {
         overviewBox.appendChild(goBackBtn);
 
         const ingredientsBox = document.createElement('div');
-        ['col-sm-12', 'col-md-6', 'ingr-table', 'p-3'].forEach(css => ingredientsBox.classList.add(css));
+        ingredientsBox.classList.add('col-sm-12', 'col-md-6', 'ingr-table', 'p-3');
 
         const ingredientsTitle = document.createElement('h5');
         ingredientsTitle.innerHTML = 'Ingredients for ' + model.getNumberOfGuests() + ' people';
@@ -60,14 +60,14 @@ class DishDetailsView {
 
         const addToMenuBtn = document.createElement('button');
         addToMenuBtn.innerHTML = 'Add to menu';
-        ['btn', 'btn-light'].forEach(cssClass => addToMenuBtn.classList.add(cssClass));
+        addToMenuBtn.classList.add('btn', 'btn-light');
 
         ingredientsBox.appendChild(ingredientsTitle);
         ingredientsBox.appendChild(table);
         ingredientsBox.appendChild(addToMenuBtn);
 
         const preparationBox = document.createElement('div');
-        ['col-sm-12', 'col-md-6'].forEach(css => preparationBox.classList.add(css));
+        preparationBox.classList.add('col-sm-12', 'col-md-6');
 
         const preparationTitle = document.createElement('h4');
         preparationTitle.innerHTML = "Preparation";

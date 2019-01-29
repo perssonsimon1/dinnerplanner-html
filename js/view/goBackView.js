@@ -4,7 +4,7 @@ var GoBackView = function (container, model) {
     dinnerText.innerHTML = "My dinner for " + model.getNumberOfGuests() + ' people';
     const button = document.createElement('button');
     button.innerHTML = "Go back and edit dinner";
-    ['float-right', 'btn', 'btn-light'].forEach(cssClass => button.classList.add(cssClass));
+    button.classList.add('float-right', 'btn', 'btn-light','searchView-btn');
     container.append(dinnerText);
     container.append(button);
 }

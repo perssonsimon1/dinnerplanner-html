@@ -28,8 +28,8 @@ window.onload = function () {
 	// showWelcome();
 	// showDishSearch();
 	// showDinnerPrintout();
-	// showDishDetails();
-	showDinnerOver();
+	 showDishDetails();
+	// showDinnerOver();
 
 	function showWelcome() {
 		hide(dinnerOverContainer);
@@ -88,19 +88,12 @@ window.onload = function () {
 		hide(goBackContainer);
 	}
 
-	function show(element) {
-		element.style.display == 'block'
-	}
 
-	function hide(element) {
-		element.style.display = 'none'
-	}
 
 	const searchViewBtns = document.querySelectorAll(".searchView-btn");
 	console.log(searchViewBtns)
 	searchViewBtns.forEach(btn => {
 		btn.addEventListener("click", ()=>{ 
-			console.log("Hello");
 			showDishSearch();
 		});
 	});
