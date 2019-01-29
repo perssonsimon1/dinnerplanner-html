@@ -1,8 +1,14 @@
 class DinnerPrintoutView {
 
     constructor(container, model) {
+        model.addObserver(this);
         this.container = container;
         this.model = model;
+        this.render(this.container, this.model);
+    }
+
+    render(container, model) {
+        console.log('Rerendering...')
         model.getDishes().map(this.createPrintout).forEach(element => this.container.appendChild(element));
     }
 
@@ -43,6 +49,10 @@ class DinnerPrintoutView {
         box.append(dishBox);
         box.append(preparationBox);
         return box;
+    }
+
+    update() {
+        render(this.container, this.model);
     }
 
 }

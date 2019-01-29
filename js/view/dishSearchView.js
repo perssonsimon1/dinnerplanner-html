@@ -15,6 +15,7 @@
 class DishSearchView {
 
     constructor(container, model) {
+        model.addObserver(this);
         this.container = container;
         this.model = model;
 

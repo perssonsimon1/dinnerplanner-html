@@ -1,35 +1,41 @@
 //DinnerModel Object constructor
-class DinnerModel {
-
-
+class Observable {
 	constructor() {
-		this.numberOfGuests = 3;
-		this.menu = [];
-		this.dishes = dishesConst;
 		this._observers = [];
 	}
 
+	addObserver(observer) {
+		this._observers.push(observer);
+	}
 
+	notifyObservers(changeDetails) {
+		this._observers.forEach(observer => observer.update(changeDetails));
+	}
+
+	removeObserver(observer) {
+		this._observers.filter(d => d != observer);
+	}
+
+}
+
+class DinnerModel extends Observable {
+
+	constructor() {
+		super();
+		this.numberOfGuests = 3;
+		this.menu = [];
+		this.dishes = dishesConst;
+	}
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
-	addObserver(observer){
-		this._observers.push(observer);
-	 }
-
-	 notifyObservers(changeDetails) {
-		for(var i=0; i<this._observers.length; i++) {
-			  this._observers[i].update(this, changeDetails);
-		}	
-	  }
-
-	removeObserver(observer){  
-		this._observers.filter(d => d!=observer);
-	}
-
 	setNumberOfGuests(num) {
 		if (num >= 0) this.numberOfGuests = num;
+		this.notifyObservers({
+			type: 'update',
+			var: 'numberOfGuests'
+		});
 	}
 
 	getNumberOfGuests() {
@@ -74,12 +80,20 @@ class DinnerModel {
 			// ändrade så existing dishes kan vara vara en rätt
 		}
 		this.menu.push(this.getDish(id));
+		this.notifyObservers({
+			type: 'new',
+			var: 'menu'
+		});
 	}
 
 	//Removes dish from menu
 	removeDishFromMenu(id) {
 		var index = this.menu.findIndex(dish => dish.id == id);
 		if (index != -1) this.menu.splice(index, 1);
+		this.notifyObservers({
+			type: 'remove',
+			var: 'menu'
+		});
 	}
 
 
@@ -109,6 +123,8 @@ class DinnerModel {
 		return this.dishes.find(dish => dish.id = id);
 	}
 }
+
+
 
 // the dishes constant contains an array of all the 
 // dishes in the database. Each dish has id, name, type,
