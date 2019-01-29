@@ -1,16 +1,32 @@
 //DinnerModel Object constructor
 class DinnerModel {
 
+
 	constructor() {
 		this.numberOfGuests = 3;
 		this.menu = [];
 		this.dishes = dishesConst;
+		this._observers = [];
 	}
 
 
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
+
+	addObserver(observer){
+		this._observers.push(observer);
+	 }
+
+	 notifyObservers(changeDetails) {
+		for(var i=0; i<this._observers.length; i++) {
+			  this._observers[i].update(this, changeDetails);
+		}	
+	  }
+
+	removeObserver(observer){  
+		this._observers.filter(d => d!=observer);
+	}
 
 	setNumberOfGuests(num) {
 		if (num >= 0) this.numberOfGuests = num;
