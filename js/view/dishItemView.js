@@ -1,7 +1,7 @@
 class DishItemView {
 
     constructor(container, model) {
-        model.addObserver(this);
+        //model.addObserver(this);
         this.container = container;
         this.model = model;
         this.render();
@@ -35,11 +35,11 @@ class DishItemView {
         div.appendChild(paragraph);
         return div;
     }
-
+/*
     update() {
         this.clear();
         this.render();
     }
-
+*/
 
 }

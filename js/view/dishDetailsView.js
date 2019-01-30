@@ -80,9 +80,9 @@ class DishDetailsView {
         preparationBox.appendChild(preparationText);
 
 
-        container.append(overviewBox);
-        container.append(ingredientsBox);
-        container.append(preparationBox);
+        this.container.append(overviewBox);
+        this.container.append(ingredientsBox);
+        this.container.append(preparationBox);
     }
 
     ingredientsRow(ingredient) {
@@ -103,8 +103,11 @@ class DishDetailsView {
     }
 
     update() {
-        //this.clear();
-        //this.render(this.model.getCurrentDish());
+        let newDish = this.model.getCurrentDish();
+        if (newDish != null){
+        this.clear();
+        this.render(this.model.getCurrentDish());
+        }
     }
 
 
