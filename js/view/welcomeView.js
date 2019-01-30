@@ -28,7 +28,8 @@ var WelcomeView = function (container, model) {
 
     const btn = document.createElement('button');
     btn.innerHTML = btnText;
-    btn.classList.add('btn', 'btn-light','searchView-btn');
+    btn.classList.add('btn', 'btn-light');
+    btn.id = 'createNewDinner';
     bottomRow.appendChild(btn);
 
     container.append(topRow);

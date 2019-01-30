@@ -9,7 +9,7 @@ class DinnerOverView {
     render(container) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
-        const numberOfGuests = model.getNumberOfGuests();
+        const numberOfGuests = this.model.getNumberOfGuests();
         this.model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
             .forEach(element => rows.appendChild(element));
 
