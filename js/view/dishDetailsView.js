@@ -7,7 +7,9 @@ class DishDetailsView {
         const dish = this.model.getCurrentDish();
         if (dish) this.render(dish);
     }
-    
+
+
+
     render(dish) {
         const overviewBox = document.createElement('div');
         overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
@@ -39,7 +41,7 @@ class DishDetailsView {
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
         dish.ingredients
-            .map(ingr => this.ingredientsRow(ingr))
+            .map(ingr => this.ingredientsRow(ingr, this.model.getNumberOfGuests()))
             .forEach(row => tableBody.appendChild(row));
 
         table.appendChild(tableBody);
@@ -80,20 +82,26 @@ class DishDetailsView {
         preparationBox.appendChild(preparationText);
 
 
-        container.append(overviewBox);
-        container.append(ingredientsBox);
-        container.append(preparationBox);
+        this.container.appendChild(overviewBox);
+        this.container.appendChild(ingredientsBox);
+        this.container.appendChild(preparationBox);
     }
 
-    ingredientsRow(ingredient) {
+    clear() {
+        while (this.container.firstChild) {
+            this.container.removeChild(this.container.firstChild);
+        }
+    }
+
+    ingredientsRow(ingredient, numberOfGuests) {
         const row = document.createElement('tr');
 
         const amount = document.createElement('td');
-        amount.innerHTML = ingredient.quantity + ' ' + ingredient.unit;
+        amount.innerHTML = ingredient.quantity * numberOfGuests + ' ' + ingredient.unit;
         const ingr = document.createElement('td');
         ingr.innerHTML = ingredient.name;
         const price = document.createElement('td');
-        price.innerHTML = 'SEK ' + ingredient.price;
+        price.innerHTML = 'SEK ' + (ingredient.price * numberOfGuests);
 
         row.appendChild(amount);
         row.appendChild(ingr);
@@ -103,8 +111,8 @@ class DishDetailsView {
     }
 
     update() {
-        //this.clear();
-        //this.render(this.model.getCurrentDish());
+        this.clear();
+        this.render(this.model.getCurrentDish());
     }
 
 
