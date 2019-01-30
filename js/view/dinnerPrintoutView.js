@@ -12,6 +12,12 @@ class DinnerPrintoutView {
         model.getFullMenu().map(this.createPrintout).forEach(element => this.container.appendChild(element));
     }
 
+    clear() {
+        while (this.container.firstChild) {
+            this.container.removeChild(this.container.firstChild);
+        }
+    }
+
     createPrintout(dish) {
         const box = document.createElement('div');
         box.classList.add('media');
@@ -52,6 +58,7 @@ class DinnerPrintoutView {
     }
 
     update() {
+        clear();
         render(this.container, this.model);
     }
 

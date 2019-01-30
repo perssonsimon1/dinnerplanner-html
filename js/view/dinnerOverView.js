@@ -28,6 +28,13 @@ class DinnerOverView {
         rows.appendChild(hallare);
     }
 
+    clear() {
+        const element = document.querySelector('#dinnerRows');
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+    }
+
     createItem(dish, numberOfGuests) {
         var outerdiv = document.createElement('div');
         var price = document.createElement('p');
@@ -56,7 +63,8 @@ class DinnerOverView {
 
     update(change) {
         if (change.var == 'numberOfGuests') {
-            render();
+            this.clear();
+            this.render();
         }
     }
 
