@@ -4,12 +4,18 @@ class DishItemView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        var rows = container.querySelector("#dishrows");
+    }
+
+    render() {
+        var rows = this.container.querySelector('#dishrows');
         this.model.getDishes().map(this.createItem).forEach(element => rows.appendChild(element));
     }
 
     clear() {
-
+        const rowContainer = this.container.querySelector('#dishrows');
+        while (rowContainer.firstChild) {
+            rowContainer.removeChild(rowContainer.firstChild);
+        }
     }
 
     createItem(dish) {
@@ -28,7 +34,10 @@ class DishItemView {
         return div;
     }
 
-    update() {}
+    update() {
+        this.clear();
+        this.render();
+    }
 
 
 }

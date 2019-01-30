@@ -33,7 +33,7 @@ class DishDetailsView {
         ingredientsBox.classList.add('col-sm-12', 'col-md-6', 'ingr-table', 'p-3');
 
         const ingredientsTitle = document.createElement('h5');
-        ingredientsTitle.innerHTML = 'Ingredients for ' + model.getNumberOfGuests() + ' people';
+        ingredientsTitle.innerHTML = 'Ingredients for ' + this.model.getNumberOfGuests() + ' people';
 
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
@@ -51,7 +51,7 @@ class DishDetailsView {
         totalPrice.innerHTML = 'SEK ' +
             dish.ingredients
             .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
 
         footerRow.appendChild(empt1);
         footerRow.appendChild(empt2);

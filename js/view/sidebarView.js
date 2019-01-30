@@ -6,16 +6,25 @@ class SidebarView {
         model.addObserver(this);
         this.model = model;
         this.container = container;
+    }
 
-        const peopleInput = document.querySelector("#people");
-        const total = document.querySelector('#total-due');
+    render() {
+        const peopleInput = this.container.querySelector("#people");
+        const total = this.container.querySelector('#total-due');
 
         const sidebarTable = document.querySelector('#sidebarTable');
-        model.getFullMenu().map(dish => this.createTableRow(dish)).forEach(row => sidebarTable.appendChild(row));
+        this.model.getFullMenu().map(dish => this.createTableRow(dish)).forEach(row => sidebarTable.appendChild(row));
 
         var numberOfGuests = this.model.getNumberOfGuests();
         peopleInput.value = numberOfGuests;
         total.innerHTML = 'Total: $' + this.model.getTotalMenuPrice();
+    }
+
+    clear() {
+        const table = this.container.querySelector('#sidebarTable');
+        while (table.firstChild) {
+            table.removeChild(table.firstChild);
+        }
     }
 
     createTableRow(dish) {
@@ -33,6 +42,9 @@ class SidebarView {
         return row;
     }
 
-    update() {}
+    update() {
+        this.clear();
+        this.render();
+    }
 
 }
