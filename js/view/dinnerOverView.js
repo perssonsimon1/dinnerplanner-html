@@ -4,6 +4,7 @@ class DinnerOverView {
         this.model = model;
         model.addObserver(this);
         this.render();
+        this.btn = container.querySelector('#print-full-recipie');
     }
 
     render() {

@@ -3,12 +3,16 @@ class DishItemView {
     constructor(container, model) {
         this.container = container;
         this.model = model;
+        this.rows = this.container.querySelector('#dishrows');
         this.render();
     }
 
-    render() {
-        var rows = this.container.querySelector('#dishrows');
-        this.model.getDishes().map(this.createItem).forEach(element => rows.appendChild(element));
+    render(type,filter) {
+        this.clear();
+        this.model.getAllDishes(type,filter).map(this.createItem).forEach(element => {
+            console.log(this.model.getAllDishes(element,"Egg"));
+            this.rows.appendChild(element);
+        });
     }
 
 
@@ -28,11 +32,17 @@ class DishItemView {
         div.appendChild(paragraph);
         return div;
     }
-/*
+
+    clear() {
+        while (this.rows.firstChild) {
+            this.rows.removeChild(this.rows.firstChild);
+        }
+    }
+
     update() {
         this.clear();
         this.render();
     }
-*/
+
 
 }

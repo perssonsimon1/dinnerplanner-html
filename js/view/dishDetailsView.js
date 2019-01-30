@@ -5,6 +5,8 @@ class DishDetailsView {
         this.container = container;
         this.model = model;
         const dish = this.model.getCurrentDish();
+        this.goBackBtn = document.createElement('button');
+        this.addToMenuBtn = document.createElement('button');
         if (dish) this.render(dish);
     }
 
@@ -23,15 +25,14 @@ class DishDetailsView {
         const desc = document.createElement('p');
         desc.innerHTML = dish.type;
 
-        const goBackBtn = document.createElement('button');
-        goBackBtn.innerHTML = "Back to search";
-        goBackBtn.classList.add('btn', 'btn-light');
-        goBackBtn.id = "detailsBack"
+        this.goBackBtn.innerHTML = "Back to search";
+        this.goBackBtn.classList.add('btn', 'btn-light');
+        this.goBackBtn.id = "detailsBack"
 
         overviewBox.appendChild(title);
         overviewBox.appendChild(image);
         overviewBox.appendChild(desc);
-        overviewBox.appendChild(goBackBtn);
+        overviewBox.appendChild(this.goBackBtn);
 
         const ingredientsBox = document.createElement('div');
         ingredientsBox.classList.add('col-sm-12', 'col-md-6', 'ingr-table', 'p-3');
@@ -63,14 +64,13 @@ class DishDetailsView {
         tableFooter.appendChild(footerRow);
         table.appendChild(tableFooter);
 
-        const addToMenuBtn = document.createElement('button');
-        addToMenuBtn.innerHTML = 'Add to menu';
-        addToMenuBtn.classList.add('btn', 'btn-light');
-        addToMenuBtn.id = "addToMenu"
+        this.addToMenuBtn.innerHTML = 'Add to menu';
+        this.addToMenuBtn.classList.add('btn', 'btn-light');
+        this.addToMenuBtn.id = "addToMenu"
 
         ingredientsBox.appendChild(ingredientsTitle);
         ingredientsBox.appendChild(table);
-        ingredientsBox.appendChild(addToMenuBtn);
+        ingredientsBox.appendChild(this.addToMenuBtn);
 
         const preparationBox = document.createElement('div');
         preparationBox.classList.add('col-sm-12', 'col-md-6');

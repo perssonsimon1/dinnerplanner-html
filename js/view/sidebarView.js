@@ -7,6 +7,8 @@ class SidebarView {
         this.model = model;
         this.container = container;
         this.render();
+        this.confirmBtn = container.querySelector('#confirmDinner');
+        this.peopleInput = container.querySelector("#people");
     }
 
     render() {

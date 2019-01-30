@@ -55,6 +55,7 @@ window.onload = function () {
 	const goBackContainer = document.querySelector("#goBackView");
 	const dishDetailsContainer = document.querySelector("#dishDetailsView");
 	const dinnerOverContainer = document.querySelector("#dinnerOverView")
+	
 
 	generalController.addView(sidebarContainer);
 	generalController.addView(welcomeContainer);
@@ -74,12 +75,13 @@ window.onload = function () {
 	const dishDetailsView = new DishDetailsView(dishDetailsContainer, model);
 	const dinnerOverView = new DinnerOverView(dinnerOverContainer, model);
 
-	const dinnerOverViewController = new DinnerOverViewController(generalController, dinnerOverContainer, model);
-	const goBackController = new GoBackController(generalController, goBackContainer, model);
-	const sidebarController = new SidebarController(generalController, sidebarContainer, model);
-	const welcomeController = new WelcomeController(generalController, welcomeContainer, model);
-	const dishItemController = new DishItemController(generalController, dishItemContainer, model);
-	const dishDetailsController = new DishDetailsController(generalController, dishDetailsContainer, model);
+	const dinnerOverviewController = new DinnerOverviewController(generalController, dinnerOverView, model);
+	const goBackController = new GoBackController(generalController, goBackView, model);
+	const sidebarController = new SidebarController(generalController, sidebarView, model);
+	const welcomeController = new WelcomeController(generalController, welcomeView, model);
+	const dishItemController = new DishItemController(generalController, dishItemView, model);
+	const dishDetailsController = new DishDetailsController(generalController, dishDetailsView, model);
+	const dishSearchController = new DishSearchController(generalController, dishSearchView,dishItemView, model);
 
 	generalController.addScreen('WELCOME', [welcomeContainer]);
 	generalController.addScreen('DISH_SEARCH', [sidebarContainer, dishSearchContainer, dishItemContainer]);
