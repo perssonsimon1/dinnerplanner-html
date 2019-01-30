@@ -4,9 +4,10 @@ class DishDetailsView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
+        this.render(this.model.getCurrentDish());
+    }
 
-        const dish = model.getDishes()[0];
-
+    render(dish) {
         const overviewBox = document.createElement('div');
         overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
 
@@ -21,7 +22,7 @@ class DishDetailsView {
 
         const goBackBtn = document.createElement('button');
         goBackBtn.innerHTML = "Back to search";
-        goBackBtn.classList.add('btn', 'btn-light','searchView-btn');
+        goBackBtn.classList.add('btn', 'btn-light', 'searchView-btn');
 
         overviewBox.appendChild(title);
         overviewBox.appendChild(image);
@@ -98,6 +99,11 @@ class DishDetailsView {
         row.appendChild(price);
 
         return row;
+    }
+
+    update() {
+        this.clear();
+        this.render(this.model.getCurrentDish());
     }
 
 

@@ -33,4 +33,6 @@ class SidebarView {
         return row;
     }
 
+    update() {}
+
 }
