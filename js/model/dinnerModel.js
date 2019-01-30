@@ -131,7 +131,7 @@ class DinnerModel extends Observable {
 
 	//function that returns a dish of specific ID
 	getDish(id) {
-		return this.dishes.find(dish => dish.id = id);
+		return this.dishes.find(dish => dish.id == id);
 	}
 }
 
