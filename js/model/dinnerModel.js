@@ -84,12 +84,14 @@ class DinnerModel extends Observable {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	addDishToMenu(id) {
-		var existingDishes = this.menu.find(dish => dish.type == this.getDish(id).type);
-		if (existingDishes != undefined) {
+		const newDish = this.getDish(id);
+		console.log(newDish);
+		var existingDishes = this.menu.find(dish => dish.type == newDish.type);
+		if (existingDishes) {
 			this.removeDishFromMenu(existingDishes.id);
 			// ändrade så existing dishes kan vara vara en rätt
 		}
-		this.menu.push(this.getDish(id));
+		this.menu.push(newDish);
 		this.notifyObservers({
 			type: 'new',
 			var: 'menu'
@@ -130,7 +132,7 @@ class DinnerModel extends Observable {
 
 	//function that returns a dish of specific ID
 	getDish(id) {
-		return this.dishes.find(dish => dish.id = id);
+		return this.dishes.find(dish => dish.id == id);
 	}
 }
 
