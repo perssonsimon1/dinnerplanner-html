@@ -59,7 +59,7 @@ class DinnerPrintoutView {
 
     update() {
         this.clear();
-        this.render(this.container, this.model);
+        this.render();
     }
 
 }

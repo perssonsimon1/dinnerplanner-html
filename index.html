@@ -68,7 +68,11 @@
 					<div id="dishrows" class="row food border border-dark justify-content-center mx-auto"></div>
 				</div>
 				<div id="dinnerPrintoutView" class="col-12"></div>
-				<div id="dishDetailsView" class="row pl-3"></div>
+				<div id="dishDetailsView" class="row pl-3">
+					<div id="dishDetails-outerBox" class='col-sm-12 col-md-6 p-3'>
+						<button id="detailsBack" class="btn btn-light">Back to Search</button>
+					</div>
+				</div>
 				<div id="dinnerOverView" class="row w-100 mx-0 my-0">
 					<div id="dinnerRows" class="row food border border-dark justify-content-center mx-auto w-100"></div>
 					<div class="row justify-content-center w-100 col-md-12 m-4">
@@ -104,6 +108,7 @@
 	<script src="js/controller/sidebarController.js"></script>
 	<script src="js/controller/welcomeController.js"></script>
 	<script src="js/controller/dishItemController.js"></script>
+	<script src="js/controller/dishDetailsController.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
 </body>
 

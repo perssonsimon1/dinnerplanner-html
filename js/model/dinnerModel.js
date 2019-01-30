@@ -32,7 +32,10 @@ class DinnerModel extends Observable {
 	setCurrentDish(id) {
 		this.currentDish = this.dishes.find(dish => dish.id == id);
 		console.log(this.currentDish);
-		this.notifyObservers({});
+		this.notifyObservers({
+			type: 'update',
+			var: 'CurrentDish'
+		});
 	}
 
 	getCurrentDish() {

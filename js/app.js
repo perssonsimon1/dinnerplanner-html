@@ -79,6 +79,7 @@ window.onload = function () {
 	const sidebarController = new SidebarController(generalController, sidebarContainer, model);
 	const welcomeController = new WelcomeController(generalController, welcomeContainer, model);
 	const dishItemController = new DishItemController(generalController, dishItemContainer, model);
+	const dishDetailsController = new DishDetailsController(generalController, dishDetailsContainer, model);
 
 	generalController.addScreen('WELCOME', [welcomeContainer]);
 	generalController.addScreen('DISH_SEARCH', [sidebarContainer, dishSearchContainer, dishItemContainer]);

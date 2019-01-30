@@ -1,7 +1,6 @@
 class DishItemView {
 
     constructor(container, model) {
-        //model.addObserver(this);
         this.container = container;
         this.model = model;
         this.render();
@@ -12,12 +11,6 @@ class DishItemView {
         this.model.getDishes().map(this.createItem).forEach(element => rows.appendChild(element));
     }
 
-    clear() {
-        const rowContainer = this.container.querySelector('#dishrows');
-        while (rowContainer.firstChild) {
-            rowContainer.removeChild(rowContainer.firstChild);
-        }
-    }
 
     createItem(dish) {
         var div = document.createElement('div');
