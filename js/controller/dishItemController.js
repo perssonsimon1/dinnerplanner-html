@@ -3,8 +3,8 @@ class DishItemController {
 
 
         view.querySelectorAll('.dish-item').forEach(item => item.addEventListener('click', event =>{
-            model.setCurrentDish(event.target.getAttribute('dishID'));
-            console.log(event.target.getAttribute('dishID'));
+            model.setCurrentDish(event.target.parentElement.getAttribute('dishID'));
+            console.log(event.target.parentElement.getAttribute('dishID'),"ble");
              gsc.showScreen('DISH_DETAILS');
         }
              ));

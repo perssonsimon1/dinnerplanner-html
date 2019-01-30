@@ -30,7 +30,7 @@ class DishItemView {
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');
-        ['align-self-end', 'my-0'].forEach(cssClass => paragraph.classList.add(cssClass));
+        paragraph.classList.add('align-self-end', 'my-0');
         div.appendChild(image);
         div.appendChild(paragraph);
         return div;
