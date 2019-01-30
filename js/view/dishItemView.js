@@ -9,8 +9,8 @@ class DishItemView {
 
     render(type,filter) {
         this.clear();
-        this.model.getDishes(type,filter).map(this.createItem).forEach(element => {
-            console.log(element,"Egg")
+        this.model.getAllDishes(type,filter).map(this.createItem).forEach(element => {
+            console.log(this.model.getAllDishes(element,"Egg"));
             this.rows.appendChild(element);
         });
     }
