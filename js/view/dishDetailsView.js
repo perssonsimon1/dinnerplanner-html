@@ -4,9 +4,10 @@ class DishDetailsView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        this.render(this.model.getCurrentDish());
+        const dish = this.model.getCurrentDish();
+        if (dish) this.render(dish);
     }
-
+    
     render(dish) {
         const overviewBox = document.createElement('div');
         overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
@@ -33,7 +34,7 @@ class DishDetailsView {
         ingredientsBox.classList.add('col-sm-12', 'col-md-6', 'ingr-table', 'p-3');
 
         const ingredientsTitle = document.createElement('h5');
-        ingredientsTitle.innerHTML = 'Ingredients for ' + model.getNumberOfGuests() + ' people';
+        ingredientsTitle.innerHTML = 'Ingredients for ' + this.model.getNumberOfGuests() + ' people';
 
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
@@ -51,7 +52,7 @@ class DishDetailsView {
         totalPrice.innerHTML = 'SEK ' +
             dish.ingredients
             .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
 
         footerRow.appendChild(empt1);
         footerRow.appendChild(empt2);
@@ -102,8 +103,8 @@ class DishDetailsView {
     }
 
     update() {
-        this.clear();
-        this.render(this.model.getCurrentDish());
+        //this.clear();
+        //this.render(this.model.getCurrentDish());
     }
 
 
