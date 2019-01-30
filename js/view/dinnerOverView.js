@@ -6,14 +6,14 @@ class DinnerOverView {
         this.render(this.container, this.model);
     }
 
-    render(container) {
+    render(container, model) {
         var total = document.createElement('p');
         var rows = container.querySelector("#dinnerRows");
-        const numberOfGuests = this.model.getNumberOfGuests();
-        this.model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
+        const numberOfGuests = model.getNumberOfGuests();
+        model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
             .forEach(element => rows.appendChild(element));
 
-        total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
+        total.innerHTML = ' Total:' + "<br>" + model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');
         var avdelare = document.createElement('div');
         var nydiv = document.createElement('div');
@@ -26,6 +26,13 @@ class DinnerOverView {
         hallare.appendChild(avdelare);
         hallare.appendChild(nydiv);
         rows.appendChild(hallare);
+    }
+
+    clear() {
+        const element = document.querySelector('#dinnerRows');
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
     }
 
     createItem(dish, numberOfGuests) {
@@ -56,7 +63,8 @@ class DinnerOverView {
 
     update(change) {
         if (change.var == 'numberOfGuests') {
-            render();
+            this.clear();
+            this.render();
         }
     }
 
