@@ -26,11 +26,11 @@ var WelcomeView = function (container, model) {
     paragraph.innerHTML = description;
     topRow.appendChild(paragraph);
 
-    const btn = document.createElement('button');
-    btn.innerHTML = btnText;
-    btn.classList.add('btn', 'btn-light');
-    btn.id = 'createNewDinner';
-    bottomRow.appendChild(btn);
+    this.btn = document.createElement('button');
+    this.btn.innerHTML = btnText;
+    this.btn.classList.add('btn', 'btn-light');
+    this.btn.id = 'createNewDinner';
+    bottomRow.appendChild(this.btn);
 
     container.append(topRow);
     container.append(bottomRow);

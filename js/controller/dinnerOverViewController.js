@@ -1,6 +1,5 @@
-class DinnerOverViewController {
+class DinnerOverviewController {
     constructor(gsc, view, model) {
-        const element = view.querySelector('#print-full-recipie');
-        element.addEventListener('click', event => gsc.showScreen('DINNER_PRINTOUT'));
+        view.btn.addEventListener('click', event => gsc.showScreen('DINNER_PRINTOUT'));
     }
 }

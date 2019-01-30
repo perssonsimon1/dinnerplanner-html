@@ -17,10 +17,13 @@ class DishSearchView {
     constructor(container, model) {
         this.container = container;
         this.model = model;
-
-        const optionsMenu = this.container.querySelector("#options");
-        optionsMenu.append(new Option("Side dish", "Tasty"));
-        const btnText = "search"
+        this.searchBtn = container.querySelector('#search');
+        this.filterInput = container.querySelector('#dish');
+        this.optionsMenu = this.container.querySelector("#options");
+        this.optionsMenu.append(new Option("Starter", "starter"));
+        this.optionsMenu.append(new Option("Main Dish", "main dish"));
+        this.optionsMenu.append(new Option("Dessert", "dessert"));
+        //const btnText = "search"
     }
 
 }

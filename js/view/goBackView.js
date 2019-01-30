@@ -3,6 +3,7 @@ class GoBackView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
+        this.btn = container.querySelector('#goBack');
     }
 
     render() {
