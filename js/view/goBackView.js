@@ -4,6 +4,7 @@ class GoBackView {
         this.container = container;
         this.model = model;
         this.btn = container.querySelector('#goBack');
+        this.render();
     }
 
     render() {
