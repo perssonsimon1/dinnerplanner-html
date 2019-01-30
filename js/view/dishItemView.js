@@ -22,7 +22,7 @@ class DishItemView {
     createItem(dish) {
         var div = document.createElement('div');
         div.attributes.dishID = dish.id;
-        ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
+        div.classList.add('dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum');
         var paragraph = document.createElement('p');
         paragraph.innerHTML = dish.name;
         var image = document.createElement('img');
