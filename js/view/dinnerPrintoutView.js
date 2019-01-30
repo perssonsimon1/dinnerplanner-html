@@ -4,12 +4,12 @@ class DinnerPrintoutView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        this.render(this.container, this.model);
+        this.render();
     }
 
-    render(container, model) {
+    render() {
         console.log('Rerendering...')
-        model.getFullMenu().map(this.createPrintout).forEach(element => this.container.appendChild(element));
+        this.model.getFullMenu().map(this.createPrintout).forEach(element => this.container.appendChild(element));
     }
 
     clear() {
@@ -58,8 +58,8 @@ class DinnerPrintoutView {
     }
 
     update() {
-        clear();
-        render(this.container, this.model);
+        this.clear();
+        this.render(this.container, this.model);
     }
 
 }

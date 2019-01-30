@@ -5,6 +5,7 @@ class Observable {
 	}
 
 	addObserver(observer) {
+		console.log('Added observer: ' + observer);
 		this._observers.push(observer);
 	}
 
@@ -26,6 +27,14 @@ class DinnerModel extends Observable {
 		this.menu = [];
 		this.currentDish = 0;
 		this.dishes = dishesConst;
+	}
+
+	setCurrentDish(id) {
+		this.currentDish = this.dishes.find(dish => dish.id = id);
+	}
+
+	getCurrentDish() {
+		return this.currentDish;
 	}
 
 	//TODO Lab 1 implement the data structure that will hold number of guest

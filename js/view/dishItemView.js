@@ -8,6 +8,10 @@ class DishItemView {
         this.model.getDishes().map(this.createItem).forEach(element => rows.appendChild(element));
     }
 
+    clear() {
+
+    }
+
     createItem(dish) {
         var div = document.createElement('div');
         ['dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum'].forEach(cssClass => div.classList.add(cssClass));
@@ -23,6 +27,8 @@ class DishItemView {
         div.appendChild(paragraph);
         return div;
     }
+
+    update() {}
 
 
 }

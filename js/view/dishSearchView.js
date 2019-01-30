@@ -23,4 +23,6 @@ class DishSearchView {
         optionsMenu.append(new Option("Side dish", "Tasty"));
         const btnText = "search"
     }
+
+    update() {}
 }

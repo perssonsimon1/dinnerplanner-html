@@ -1,5 +1,4 @@
 var ExampleView = function (container, model) {
-	model.addObserver(this);
 	var numberOfGuests = container.find("#numberOfGuests");
 
 	this.plusButton = container.find("#plusGuest");

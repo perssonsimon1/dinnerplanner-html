@@ -1,19 +1,20 @@
 class DinnerOverView {
     constructor(container, model) {
-        model.addObserver(this);
         this.container = container;
         this.model = model;
-        this.render(this.container, this.model);
+        model.addObserver(this);
+        this.render();
     }
 
-    render(container, model) {
+    render() {
         var total = document.createElement('p');
-        var rows = container.querySelector("#dinnerRows");
-        const numberOfGuests = model.getNumberOfGuests();
-        model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
+        console.log(this.container);
+        var rows = this.container.querySelector("#dinnerRows");
+        const numberOfGuests = this.model.getNumberOfGuests();
+        this.model.getFullMenu().map(item => this.createItem(item, numberOfGuests))
             .forEach(element => rows.appendChild(element));
 
-        total.innerHTML = ' Total:' + "<br>" + model.getTotalMenuPrice() + ' SEK';
+        total.innerHTML = ' Total:' + "<br>" + this.model.getTotalMenuPrice() + ' SEK';
         var hallare = document.createElement('div');
         var avdelare = document.createElement('div');
         var nydiv = document.createElement('div');
@@ -29,7 +30,7 @@ class DinnerOverView {
     }
 
     clear() {
-        const element = document.querySelector('#dinnerRows');
+        const element = this.container.querySelector('#dinnerRows');
         while (element.firstChild) {
             element.removeChild(element.firstChild);
         }
@@ -62,10 +63,8 @@ class DinnerOverView {
     }
 
     update(change) {
-        if (change.var == 'numberOfGuests') {
-            this.clear();
-            this.render();
-        }
+        this.clear();
+        this.render();
     }
 
 }
