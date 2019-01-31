@@ -43,9 +43,9 @@ window.onload = function () {
 	//We instantiate our model
 	const model = new DinnerModel();
 
-	model.addDishToMenu(1);
-	model.addDishToMenu(2);
-	model.addDishToMenu(100);
+	//model.addDishToMenu(1);
+	//model.addDishToMenu(2);
+	//model.addDishToMenu(100);
 
 	const sidebarContainer = document.querySelector("#sidebar");
 	const welcomeContainer = document.querySelector("#welcomeView");
