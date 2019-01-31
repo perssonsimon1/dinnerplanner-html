@@ -16,6 +16,15 @@ class SidebarView {
         const total = this.container.querySelector('#total-due');
 
         const sidebarTable = document.querySelector('#sidebarTable');
+        const header = document.createElement('tr');
+        header.classList.add('border');
+        const header1 = document.createElement('th');
+        header1.innerHTML = "Dish name"
+        const header2 = document.createElement('th');
+        header2.innerHTML = "Cost";
+        header.appendChild(header1);
+        header.appendChild(header2);
+        sidebarTable.appendChild(header);
         this.model.getFullMenu().map(dish => this.createTableRow(dish)).forEach(row => sidebarTable.appendChild(row));
 
         var numberOfGuests = this.model.getNumberOfGuests();
@@ -24,9 +33,9 @@ class SidebarView {
     }
 
     clear() {
-        const table = this.container.querySelector('#sidebarTable');
-        while (table.firstChild) {
-            table.removeChild(table.firstChild);
+        const tableSpan = this.container.querySelector('#sidebarTable');
+        while (tableSpan.firstChild) {
+            tableSpan.removeChild(tableSpan.firstChild);
         }
     }
 

@@ -21,20 +21,15 @@
 		<div class="row mx-0">
 			<div id="sidebar" class="col-sm-12 col-md-4 col-lg-3 mx-0">
 				<div id="sidebar-toggle" class='btn-toolbar pull-right'>
-					<div class='btn-group d-md-none d-lg-none d-sm-block'>
+					<div class='btn-group d-md-none d-lg-none d-sm-block d-xs-block'>
 						<button type='button' id="sidebar-toggle" data-target="#sidebar-hidden-part" class="btn btn-primary" data-toggle="collapse">Toggle</button>
 					</div>
 				</div>
 				<h4>My Dinner</h4>
-				<div id="sidebar-hidden-part" class="collapse in d-md-block d-lg-block d-sm-none">
+				<div id="sidebar-hidden-part" class="collapse d-lg-block d-md-block">
 					<div>People</div>
 					<input type="number" min="0" id="people">
-					<table id="sidebarTable">
-						<tr class="border">
-							<th>Dish Name</th>
-							<th>Cost</th>
-						</tr>
-					</table>
+					<table id="sidebarTable"></table>
 
 					<button class="btn btn-light" id="confirmDinner">Confirm order</button>
 				</div>
