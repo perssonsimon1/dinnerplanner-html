@@ -21,12 +21,12 @@
 		<div class="row mx-0">
 			<div id="sidebar" class="col-sm-12 col-md-4 col-lg-3 mx-0">
 				<div id="sidebar-toggle" class='btn-toolbar pull-right'>
-					<div class='btn-group'>
-						<button type='button' id="sidebar-toggle" class='btn btn-primary 'data-toggle="collapse" href=".sidebar-hidden-part" role="button" aria-expanded="false" aria-controls=".sidebar-hidden-part">Toggle</button>
+					<div class='btn-group d-md-none d-lg-none d-sm-block'>
+						<button type='button' id="sidebar-toggle" data-target="#sidebar-hidden-part" class="btn btn-primary" data-toggle="collapse">Toggle</button>
 					</div>
 				</div>
 				<h4>My Dinner</h4>
-				<div id="sidebar-hidden-part">
+				<div id="sidebar-hidden-part" class="collapse in d-md-block d-lg-block d-sm-none">
 					<div>People</div>
 					<input type="number" min="0" id="people">
 					<table id="sidebarTable">
