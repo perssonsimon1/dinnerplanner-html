@@ -19,19 +19,18 @@ var WelcomeView = function (container, model) {
 
     const topRow = document.createElement('div');
     const bottomRow = document.createElement('div');
-    const centeringClasses = ['row', 'justify-content-center'];
     [topRow, bottomRow]
-    .forEach(element => centeringClasses
-        .forEach(cssClass => element.classList.add(cssClass)));
+    .forEach(element => element.classList.add('row', 'justify-content-center'));
 
     const paragraph = document.createElement('p');
     paragraph.innerHTML = description;
     topRow.appendChild(paragraph);
 
-    const btn = document.createElement('button');
-    btn.innerHTML = btnText;
-    ['btn', 'btn-light'].forEach(cssClass => btn.classList.add(cssClass));
-    bottomRow.appendChild(btn);
+    this.btn = document.createElement('button');
+    this.btn.innerHTML = btnText;
+    this.btn.classList.add('btn', 'btn-light');
+    this.btn.id = 'createNewDinner';
+    bottomRow.appendChild(this.btn);
 
     container.append(topRow);
     container.append(bottomRow);

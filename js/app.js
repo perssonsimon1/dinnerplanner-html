@@ -1,10 +1,51 @@
+class GeneralController {
+
+	constructor() {
+		this.views = [];
+		this.screens = {};
+	}
+
+	hideAll() {
+		for (var key in this.views) {
+			this.hide(this.views[key]);
+		}
+	}
+
+	addView(view) {
+		this.views.push(view);
+	}
+
+	addScreen(name, views) {
+		this.screens[name] = views;
+	}
+
+	showScreen(name) {
+		this.hideAll();
+		for (var key in this.screens[name]) {
+			this.show(this.screens[name][key]);
+		}
+	}
+
+	show(element) {
+		element.classList.remove('d-none');
+	}
+
+	hide(element) {
+		element.classList.add('d-none')
+	}
+
+}
+
 window.onload = function () {
+
+	const generalController = new GeneralController();
+
 	//We instantiate our model
 	const model = new DinnerModel();
 
-	model.addDishToMenu(1);
-	model.addDishToMenu(2);
-	model.addDishToMenu(100);
+	//model.addDishToMenu(1);
+	//model.addDishToMenu(2);
+	//model.addDishToMenu(100);
 
 	const sidebarContainer = document.querySelector("#sidebar");
 	const welcomeContainer = document.querySelector("#welcomeView");
@@ -14,7 +55,16 @@ window.onload = function () {
 	const goBackContainer = document.querySelector("#goBackView");
 	const dishDetailsContainer = document.querySelector("#dishDetailsView");
 	const dinnerOverContainer = document.querySelector("#dinnerOverView")
+	
 
+	generalController.addView(sidebarContainer);
+	generalController.addView(welcomeContainer);
+	generalController.addView(dishSearchContainer);
+	generalController.addView(dishItemContainer);
+	generalController.addView(dinnerPrintoutContainer);
+	generalController.addView(goBackContainer);
+	generalController.addView(dishDetailsContainer);
+	generalController.addView(dinnerOverContainer);
 
 	const sidebarView = new SidebarView(sidebarContainer, model);
 	const dishSearchView = new DishSearchView(dishSearchContainer, model);
@@ -25,82 +75,37 @@ window.onload = function () {
 	const dishDetailsView = new DishDetailsView(dishDetailsContainer, model);
 	const dinnerOverView = new DinnerOverView(dinnerOverContainer, model);
 
-	showWelcome();
-	// showDishSearch();
-	// showDinnerPrintout();
-	// showDishDetails();
-	// showDinnerOver();
+	const dinnerOverviewController = new DinnerOverviewController(generalController, dinnerOverView, model);
+	const goBackController = new GoBackController(generalController, goBackView, model);
+	const sidebarController = new SidebarController(generalController, sidebarView, model);
+	const welcomeController = new WelcomeController(generalController, welcomeView, model);
+	const dishItemController = new DishItemController(generalController, dishItemView, model);
+	const dishDetailsController = new DishDetailsController(generalController, dishDetailsView, model);
+	const dishSearchController = new DishSearchController(generalController, dishSearchView,dishItemView, model);
 
-	function showWelcome() {
-		hide(dinnerOverContainer);
-		hide(sidebarContainer);
-		show(welcomeContainer);
-		hide(dishSearchContainer);
-		hide(dishItemContainer);
-		hide(goBackContainer);
-		hide(dinnerPrintoutContainer);
-		hide(dishDetailsContainer);
-	}
+	generalController.addScreen('WELCOME', [welcomeContainer]);
+	generalController.addScreen('DISH_SEARCH', [sidebarContainer, dishSearchContainer, dishItemContainer]);
+	generalController.addScreen('DINNER_PRINTOUT', [dinnerPrintoutContainer, goBackContainer]);
+	generalController.addScreen('DINNER_OVERVIEW', [dinnerOverContainer, goBackContainer]);
+	generalController.addScreen('DISH_DETAILS', [sidebarContainer, dishDetailsContainer]);
 
-	function showDishSearch() {
-		hide(dinnerOverContainer);
-		show(sidebarContainer);
-		hide(welcomeContainer);
-		show(dishSearchContainer);
-		show(dishItemContainer);
-		hide(dinnerPrintoutContainer);
-		hide(goBackContainer);
-		hide(dishDetailsContainer);
+	generalController.showScreen('WELCOME');
 
-	}
+	const searchViewBtns = document.querySelectorAll(".searchView-btn");
+	console.log(searchViewBtns)
 
-	function showDinnerPrintout() {
-		hide(dinnerOverContainer);
-		hide(sidebarContainer);
-		hide(welcomeContainer);
-		hide(dishSearchContainer);
-		hide(dishItemContainer);
-		show(dinnerPrintoutContainer);
-		show(goBackContainer);
-		hide(dishDetailsContainer);
-	}
-
-	function showDinnerOver() {
-		hide(sidebarContainer);
-		hide(welcomeContainer);
-		hide(dishSearchContainer);
-		hide(dishItemContainer);
-		show(dinnerOverContainer);
-		hide(dinnerPrintoutContainer);
-		show(goBackContainer);
-		hide(dishDetailsContainer);
-	}
-
-	function showDishDetails() {
-		hide(dinnerOverContainer);
-		show(sidebarContainer);
-		hide(welcomeContainer);
-		hide(dishSearchContainer);
-		hide(dishItemContainer);
-		show(dishDetailsContainer);
-		hide(dinnerPrintoutContainer);
-		hide(goBackContainer);
-	}
-
-	function show(element) {
-		element.style.display == 'block'
-	}
-
-	function hide(element) {
-		element.style.display = 'none'
-	}
+	/*searchViewBtns.forEach(btn => {
+		btn.addEventListener("click", (event) => {
+			console.log(event);
+			generalController.showScreen('DINNER_PRINTOUT');
+		});
+	});*/
+}
 
 
-	/**
-	 * IMPORTANT: app.js is the only place where you are allowed to
-	 * query for elements in the whole document.
-	 * In other places you should limit the search only to the children 
-	 * of the specific view you're working with (see exampleView.js).
-	 */
-
-};
+/**
+ * IMPORTANT: app.js is the only place where you are allowed to
+ * query for elements in the whole document.
+ * In other places you should limit the search only to the children 
+ * of the specific view you're working with (see exampleView.js).
+ */

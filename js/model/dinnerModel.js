@@ -1,19 +1,56 @@
 //DinnerModel Object constructor
-class DinnerModel {
+class Observable {
+	constructor() {
+		this._observers = [];
+	}
+
+	addObserver(observer) {
+		console.log('Added observer: ' + observer);
+		this._observers.push(observer);
+	}
+
+	notifyObservers(changeDetails) {
+		this._observers.forEach(observer => observer.update(changeDetails));
+	}
+
+	removeObserver(observer) {
+		this._observers.filter(d => d != observer);
+	}
+
+}
+
+class DinnerModel extends Observable {
 
 	constructor() {
-		this.numberOfGuests = 3;
+		super();
+		this.numberOfGuests = 1;
 		this.menu = [];
+		this.currentDish = 0;
 		this.dishes = dishesConst;
 	}
 
+	setCurrentDish(id) {
+		this.currentDish = this.dishes.find(dish => dish.id == id);
+		console.log(this.currentDish);
+		this.notifyObservers({
+			type: 'update',
+			var: 'CurrentDish'
+		});
+	}
 
+	getCurrentDish() {
+		return this.currentDish;
+	}
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
 	setNumberOfGuests(num) {
 		if (num >= 0) this.numberOfGuests = num;
+		this.notifyObservers({
+			type: 'update',
+			var: 'numberOfGuests'
+		});
 	}
 
 	getNumberOfGuests() {
@@ -52,18 +89,28 @@ class DinnerModel {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	addDishToMenu(id) {
-		var existingDishes = this.menu.find(dish => dish.type == this.getDish(id).type);
-		if (existingDishes != undefined) {
+		const newDish = this.getDish(id);
+		console.log(newDish);
+		var existingDishes = this.menu.find(dish => dish.type == newDish.type);
+		if (existingDishes) {
 			this.removeDishFromMenu(existingDishes.id);
 			// ändrade så existing dishes kan vara vara en rätt
 		}
-		this.menu.push(this.getDish(id));
+		this.menu.push(newDish);
+		this.notifyObservers({
+			type: 'new',
+			var: 'menu'
+		});
 	}
 
 	//Removes dish from menu
 	removeDishFromMenu(id) {
 		var index = this.menu.findIndex(dish => dish.id == id);
 		if (index != -1) this.menu.splice(index, 1);
+		this.notifyObservers({
+			type: 'remove',
+			var: 'menu'
+		});
 	}
 
 
@@ -71,7 +118,8 @@ class DinnerModel {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	getAllDishes(type, filter) {
-		return this.dishes.filter(function (dish) {
+		var selection = this.dishes.filter(dish => dish.type == type || !type);
+		var inner = selection.filter(function (dish) {
 			var found = true;
 			if (filter) {
 				found = false;
@@ -84,15 +132,19 @@ class DinnerModel {
 					found = true;
 				}
 			}
-			return dish.type == type && found;
+			return dish && found
 		});
+		if (!inner || inner.length==0) return this.dishes;
+		else return inner;
 	}
 
 	//function that returns a dish of specific ID
 	getDish(id) {
-		return this.dishes.find(dish => dish.id = id);
+		return this.dishes.find(dish => dish.id == id);
 	}
 }
+
+
 
 // the dishes constant contains an array of all the 
 // dishes in the database. Each dish has id, name, type,

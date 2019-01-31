@@ -1,9 +1,19 @@
-var GoBackView = function (container, model) {
-    const dinnerText = document.createElement('h3');
-    dinnerText.innerHTML = "My dinner for " + model.getNumberOfGuests() + ' people';
-    const button = document.createElement('button');
-    button.innerHTML = "Go back and edit dinner";
-    ['float-right', 'btn', 'btn-light'].forEach(cssClass => button.classList.add(cssClass));
-    container.append(dinnerText);
-    container.append(button);
+class GoBackView {
+    constructor(container, model) {
+        model.addObserver(this);
+        this.container = container;
+        this.model = model;
+        this.btn = container.querySelector('#goBack');
+        this.render();
+    }
+
+    render() {
+        const dinnerText = this.container.querySelector('#dinnerText');
+        dinnerText.innerHTML = "My dinner for " + this.model.getNumberOfGuests() + ' people';
+        this.container.appendChild(dinnerText);
+    }
+
+    update() {
+        this.render();
+    }
 }

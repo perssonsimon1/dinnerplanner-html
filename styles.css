@@ -7,7 +7,7 @@
 
 #goBackView {
     background-color: grey;
-    height: 100px;
+    height: 70px;
 }
 
 
@@ -35,10 +35,6 @@
     background-color: grey;
 }
 
-#sidebar-toggle {
-    display: none;
-    float: right;
-}
 
 
 /*
@@ -46,26 +42,6 @@
     margin: 5px auto;
 }
 */
-@media only screen and (max-width: 768px) {
-
-    #sidebar-hidden-part {
-        display: none;
-    }
-
-    #sidebar {
-        margin: 0px 10px;
-    }
-
-    .avdelare {
-        display: none;
-    }
-
-    #sidebar-toggle {
-        display: initial;
-    }
-
-
-}
 
 .dish-item {
     background-color: #dbdde0;
