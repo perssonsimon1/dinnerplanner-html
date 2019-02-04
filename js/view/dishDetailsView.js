@@ -17,13 +17,13 @@ class DishDetailsView {
         overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
 
         const title = document.createElement('h4');
-        title.innerHTML = dish.name;
+        title.innerHTML = dish.title;
 
         const image = document.createElement('img');
-        image.src = './images/' + dish.image;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
 
         const desc = document.createElement('p');
-        desc.innerHTML = dish.type;
+        desc.innerHTML = dish.vegan;
 
         this.goBackBtn.innerHTML = "Back to search";
         this.goBackBtn.classList.add('btn', 'btn-light');
@@ -42,7 +42,7 @@ class DishDetailsView {
 
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
-        dish.ingredients
+        dish.extendedIngredients
             .map(ingr => this.ingredientsRow(ingr, this.model.getNumberOfGuests()))
             .forEach(row => tableBody.appendChild(row));
 
@@ -54,8 +54,8 @@ class DishDetailsView {
         const empt2 = document.createElement('td');
         const totalPrice = document.createElement('td');
         totalPrice.innerHTML = 'SEK ' +
-            dish.ingredients
-            .map(ingr => ingr.price)
+            dish.extendedIngredients
+            .map(ingr => ingr.amount)
             .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
 
         footerRow.appendChild(empt1);
@@ -99,11 +99,11 @@ class DishDetailsView {
         const row = document.createElement('tr');
 
         const amount = document.createElement('td');
-        amount.innerHTML = ingredient.quantity * numberOfGuests + ' ' + ingredient.unit;
+        amount.innerHTML = ingredient.amount;
         const ingr = document.createElement('td');
         ingr.innerHTML = ingredient.name;
         const price = document.createElement('td');
-        price.innerHTML = 'SEK ' + (ingredient.price * numberOfGuests);
+        price.innerHTML = 'SEK ' + (ingredient.amount * numberOfGuests);
 
         row.appendChild(amount);
         row.appendChild(ingr);
@@ -114,9 +114,9 @@ class DishDetailsView {
 
     update() {
         let newDish = this.model.getCurrentDish();
-        if (newDish){
-        this.clear();
-        this.render(this.model.getCurrentDish());
+        if (newDish) {
+            this.clear();
+            this.render(this.model.getCurrentDish());
         }
     }
 

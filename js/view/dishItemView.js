@@ -7,23 +7,21 @@ class DishItemView {
         this.render();
     }
 
-    render(type,filter) {
+    render(type, filter) {
         this.clear();
-        this.model.getAllDishes(type,filter).map(this.createItem).forEach(element => {
-            console.log(this.model.getAllDishes(element,"Egg"));
+        this.model.getAllDishes('main course', '').then(dishes => dishes.map(this.createItem).forEach(element => {
             this.rows.appendChild(element);
-        });
+        }));
     }
-
 
     createItem(dish) {
         var div = document.createElement('div');
         div.setAttribute('dishID', dish.id);
         div.classList.add('dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum');
         var paragraph = document.createElement('p');
-        paragraph.innerHTML = dish.name;
+        paragraph.innerHTML = dish.title;
         var image = document.createElement('img');
-        image.src = './images/' + dish.image;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');
@@ -32,6 +30,10 @@ class DishItemView {
         div.appendChild(paragraph);
         return div;
     }
+
+
+
+
 
     clear() {
         while (this.rows.firstChild) {
