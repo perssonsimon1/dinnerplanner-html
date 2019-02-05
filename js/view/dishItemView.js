@@ -34,7 +34,7 @@ class DishItemView {
         var paragraph = document.createElement('p');
         paragraph.innerHTML = dish.title;
         var image = document.createElement('img');
-        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-240x150.jpg`;
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');

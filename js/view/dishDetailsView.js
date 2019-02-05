@@ -19,7 +19,7 @@ class DishDetailsView {
         title.innerHTML = dish.title;
 
         const image = document.createElement('img');
-        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-312x231.jpg`;
 
         const desc = document.createElement('p');
         desc.innerHTML = dish.vegan;
@@ -77,7 +77,7 @@ class DishDetailsView {
         const preparationTitle = document.createElement('h4');
         preparationTitle.innerHTML = "Preparation";
         const preparationText = document.createElement('p');
-        preparationText.innerHTML = dish.description;
+        preparationText.innerHTML = dish.instructions;
 
         preparationBox.appendChild(preparationTitle);
         preparationBox.appendChild(preparationText);
