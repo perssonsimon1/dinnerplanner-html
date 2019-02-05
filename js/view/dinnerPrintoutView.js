@@ -25,7 +25,7 @@ class DinnerPrintoutView {
 
         const imageBox = document.createElement('div');
         const image = document.createElement('img');
-        image.src = './images/' + dish.image;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
         imageBox.classList.add('media-left');
         imageBox.classList.add('printout-image');
         imageBox.appendChild(image);
@@ -35,9 +35,9 @@ class DinnerPrintoutView {
         dishBoxCss.forEach(css => dishBox.classList.add(css));
         const title = document.createElement('h4');
         title.classList.add('media-heading');
-        title.innerHTML = dish.name;
+        title.innerHTML = dish.title;
         const description = document.createElement('p');
-        description.innerHTML = dish.description;
+        description.innerHTML = dish.instructions;
         dishBox.appendChild(title);
         dishBox.appendChild(description);
 

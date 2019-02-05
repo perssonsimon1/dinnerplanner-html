@@ -103,7 +103,6 @@ class DinnerModel extends Observable {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	addDishToMenu(dish) {
-		console.log(dish);
 		this.menu.push(dish);
 		this.notifyObservers({
 			type: 'new',
