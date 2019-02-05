@@ -42,7 +42,7 @@ class SidebarView {
     createTableRow(dish) {
         const row = document.createElement('tr');
         const name = document.createElement('td');
-        name.innerHTML = dish.name;
+        name.innerHTML = dish.title;
         const cost = document.createElement('td');
         cost.innerHTML = 'SEK ' +
             dish.extendedIngredients

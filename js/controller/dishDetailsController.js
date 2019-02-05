@@ -4,7 +4,7 @@ class DishDetailsController {
 
         view.goBackBtn.addEventListener('click', event => gsc.showScreen('DISH_SEARCH'));
         view.addToMenuBtn.addEventListener('click', event => {
-            model.getCurrentDish().then(model.addDishToMenu);
+            model.getCurrentDish().then(dish => model.addDishToMenu(dish));
         });
     }
 
