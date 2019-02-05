@@ -45,8 +45,8 @@ class SidebarView {
         name.innerHTML = dish.name;
         const cost = document.createElement('td');
         cost.innerHTML = 'SEK ' +
-            dish.ingredients
-            .map(ingr => ingr.price)
+            dish.extendedIngredients
+            .map(ingr => ingr.amount)
             .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
 
         row.appendChild(name);
