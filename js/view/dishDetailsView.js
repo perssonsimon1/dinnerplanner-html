@@ -113,11 +113,10 @@ class DishDetailsView {
     }
 
     update() {
-        let newDish = this.model.getCurrentDish();
-        if (newDish) {
-            this.clear();
-            this.render(this.model.getCurrentDish());
-        }
+        this.clear();
+        this.model.getCurrentDish().then(dish => {
+            if (dish) this.render(dish);
+        }).catch(console.log);
     }
 
 

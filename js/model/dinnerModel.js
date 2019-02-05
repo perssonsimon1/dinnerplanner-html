@@ -29,18 +29,19 @@ class DinnerModel extends Observable {
 	}
 
 	setCurrentDish(id) {
-		this.getDish(id).then(dish => {
-			this.currentDish = dish;
+		if (this.currentDish != id) {
+			this.currentDish = id;
 			this.notifyObservers({
 				type: 'update',
 				var: 'CurrentDish'
 			});
-		});
-
+		}
 	}
 
 	getCurrentDish() {
-		return this.currentDish;
+		if (this.currentDish != 0) {
+			return this.getDish(this.currentDish);
+		}
 	}
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
