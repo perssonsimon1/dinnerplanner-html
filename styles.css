@@ -10,6 +10,10 @@
     height: 70px;
 }
 
+#alert {
+    display: none;
+}
+
 .loader {
     right: 10px;
     top: 10px;

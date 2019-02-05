@@ -9,7 +9,7 @@ class DishDetailsView {
         this.model.getCurrentDish().then(dish => {
             if (dish) this.render(dish);
             this.loader.style.display = 'none';
-        }).catch(console.log);
+        }).catch(this.showError);
         this.goBackBtn = document.createElement('button');
         this.addToMenuBtn = document.createElement('button');
     }
@@ -116,11 +116,17 @@ class DishDetailsView {
         return row;
     }
 
+    showError(error) {
+        const alert = document.querySelector('#alert');
+        alert.innerHTML = 'Dishes could not be fetched, check your network connection';
+        alert.style.display = 'block';
+    }
+
     update() {
         this.clear();
         this.model.getCurrentDish().then(dish => {
             if (dish) this.render(dish);
-        }).catch(console.log);
+        }).catch(this.showError);
     }
 
 

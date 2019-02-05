@@ -18,9 +18,14 @@ class DishItemView {
         this.model.getAllDishes(type, filter).then(dishes => dishes.map(this.createItem).forEach(element => {
             this.rows.appendChild(element);
             loader.style.display = 'none';
-        }));
+        })).catch(error => this.showError(error));
     }
 
+    showError(error) {
+        const alert = document.querySelector('#alert');
+        alert.innerHTML = 'Dishes could not be fetched, check your network connection';
+        alert.style.display = 'block';
+    }
 
     createItem(dish) {
         var div = document.createElement('div');
