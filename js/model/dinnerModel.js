@@ -25,7 +25,8 @@ class DinnerModel extends Observable {
 		super();
 		this.numberOfGuests = 1;
 		this.menu = [];
-		this.currentDish = 0;
+		this.currentDish = -1;
+		this.currentDishData;
 	}
 
 	setCurrentDish(id) {
@@ -39,8 +40,24 @@ class DinnerModel extends Observable {
 	}
 
 	getCurrentDish() {
-		if (this.currentDish != 0) {
-			return this.getDish(this.currentDish);
+		if (this.currentDish != -1) {
+			if (this.currentDishData && this.currentDish == this.currentDishData.id) {
+				console.log('data is stored');
+				return new Promise((resolve, reject) => {
+					if (this.currentDishData) {
+						resolve(this.currentDishData);
+					} else {
+						reject('We have a problem');
+					}
+
+				});
+			} else {
+				return this.getDish(this.currentDish).then(dish => {
+					this.currentDishData = dish;
+					return dish;
+				});
+			}
+
 		}
 	}
 
@@ -85,15 +102,8 @@ class DinnerModel extends Observable {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	addDishToMenu(id) {
-		const newDish = this.getDish(id);
-		console.log(newDish);
-		var existingDishes = this.menu.find(dish => dish.type == newDish.type);
-		if (existingDishes) {
-			this.removeDishFromMenu(existingDishes.id);
-			// ändrade så existing dishes kan vara vara en rätt
-		}
-		this.menu.push(newDish);
+	addDishToMenu(dish) {
+		this.menu.push(dish);
 		this.notifyObservers({
 			type: 'new',
 			var: 'menu'
