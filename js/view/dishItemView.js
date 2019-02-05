@@ -9,7 +9,11 @@ class DishItemView {
 
     render(type, filter) {
         this.clear();
-        this.model.getAllDishes('main course', '').then(dishes => dishes.map(this.createItem).forEach(element => {
+        console.log(type,filter,"type and filter");
+        if (type ==undefined) type = 'main course';
+        if (filter==undefined) filter = '';
+        console.log(type,filter,"type and filter");
+        this.model.getAllDishes(type, filter).then(dishes => dishes.map(this.createItem).forEach(element => {
             this.rows.appendChild(element);
         }));
     }
