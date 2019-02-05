@@ -16,7 +16,7 @@
 
 img {
     background: url('images/loading.gif') no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .loader {
