@@ -13,7 +13,7 @@ class DishItemView {
         if (type == undefined) type = 'main course';
         if (filter == undefined) filter = '';
         console.log(type, filter, "type and filter");
-        const loader = document.querySelector('.loader');
+        const loader = this.container.querySelector('.loader');
         loader.style.display = 'block';
         this.model.getAllDishes(type, filter).then(dishes => dishes.map(this.createItem).forEach(element => {
             this.rows.appendChild(element);

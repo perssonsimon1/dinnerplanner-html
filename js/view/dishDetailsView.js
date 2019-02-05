@@ -4,12 +4,7 @@ class DishDetailsView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        this.loader = document.querySelector('.loader');
-        this.loader.style.display = 'block';
-        this.model.getCurrentDish().then(dish => {
-            if (dish) this.render(dish);
-            this.loader.style.display = 'none';
-        }).catch(console.log);
+        this.loader = this.container.querySelector('.loader');
         this.goBackBtn = document.createElement('button');
         this.addToMenuBtn = document.createElement('button');
     }
@@ -96,7 +91,9 @@ class DishDetailsView {
     clear() {
         while (this.container.firstChild) {
             this.container.removeChild(this.container.firstChild);
+            
         }
+        this.container.appendChild(this.loader);
     }
 
     ingredientsRow(ingredient, numberOfGuests) {
@@ -118,8 +115,11 @@ class DishDetailsView {
 
     update() {
         this.clear();
+        this.loader.style.display = 'block';
+        console.log(this.loader.style.display);
         this.model.getCurrentDish().then(dish => {
             if (dish) this.render(dish);
+            this.loader.style.display = 'none';
         }).catch(console.log);
     }
 
