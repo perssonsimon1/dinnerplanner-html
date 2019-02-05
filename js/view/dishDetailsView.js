@@ -4,10 +4,14 @@ class DishDetailsView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        const dish = this.model.getCurrentDish();
+        this.loader = document.querySelector('.loader');
+        this.loader.style.display = 'block';
+        this.model.getCurrentDish().then(dish => {
+            if (dish) this.render(dish);
+            this.loader.style.display = 'none';
+        }).catch(console.log);
         this.goBackBtn = document.createElement('button');
         this.addToMenuBtn = document.createElement('button');
-        if (dish) this.render(dish);
     }
 
 
@@ -83,10 +87,10 @@ class DishDetailsView {
         preparationBox.appendChild(preparationTitle);
         preparationBox.appendChild(preparationText);
 
-
         this.container.appendChild(overviewBox);
         this.container.appendChild(ingredientsBox);
         this.container.appendChild(preparationBox);
+
     }
 
     clear() {
@@ -99,11 +103,11 @@ class DishDetailsView {
         const row = document.createElement('tr');
 
         const amount = document.createElement('td');
-        amount.innerHTML = ingredient.amount;
+        amount.innerHTML = Number(ingredient.amount).toFixed(2);
         const ingr = document.createElement('td');
         ingr.innerHTML = ingredient.name;
         const price = document.createElement('td');
-        price.innerHTML = 'SEK ' + (ingredient.amount * numberOfGuests);
+        price.innerHTML = 'SEK ' + Number(ingredient.amount * numberOfGuests).toFixed(2);
 
         row.appendChild(amount);
         row.appendChild(ingr);

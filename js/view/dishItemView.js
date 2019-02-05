@@ -9,14 +9,18 @@ class DishItemView {
 
     render(type, filter) {
         this.clear();
-        console.log(type,filter,"type and filter");
-        if (type ==undefined) type = 'main course';
-        if (filter==undefined) filter = '';
-        console.log(type,filter,"type and filter");
+        console.log(type, filter, "type and filter");
+        if (type == undefined) type = 'main course';
+        if (filter == undefined) filter = '';
+        console.log(type, filter, "type and filter");
+        const loader = document.querySelector('.loader');
+        loader.style.display = 'block';
         this.model.getAllDishes(type, filter).then(dishes => dishes.map(this.createItem).forEach(element => {
             this.rows.appendChild(element);
+            loader.style.display = 'none';
         }));
     }
+
 
     createItem(dish) {
         var div = document.createElement('div');
