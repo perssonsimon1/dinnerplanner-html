@@ -29,7 +29,7 @@ class DishItemView {
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');
-        paragraph.classList.add('align-self-end', 'my-0');
+        paragraph.classList.add('align-self-end', 'my-0','ellipsis');
         div.appendChild(image);
         div.appendChild(paragraph);
         return div;

@@ -48,17 +48,24 @@
     margin: 15px;
     padding: 0;
     max-width: 150px;
+    text-overflow: ellipsis;
 }
+
 
 
 #dishItemView {
     height: 100%;
 }
 
-
+.ellipsis{
+    text-align:center;
+    align-content: center;
+}
 .food [class*='col-'] {
     min-width: 150px;
+    max-width: 172px;
     margin-bottom: 15px;
+    text-overflow: ellipsis;
 }
 
 #dishSearchView {
