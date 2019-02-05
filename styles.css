@@ -22,7 +22,6 @@ img {
 .loader {
     right: 10px;
     top: 10px;
-    position: absolute;
     align-self: center;
     border: 16px solid #f3f3f3;
     /* Light grey */

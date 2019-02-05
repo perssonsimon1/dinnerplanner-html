@@ -125,6 +125,7 @@ class DishDetailsView {
         console.log(this.loader.style.display);
         this.model.getCurrentDish().then(dish => {
             if (dish) this.render(dish);
+            this.loader.style.display = 'none';
         }).catch(this.showError);
     }
 
