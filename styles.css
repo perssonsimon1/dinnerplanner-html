@@ -14,6 +14,11 @@
     display: none;
 }
 
+img {
+    background: url('images/loading.gif') no-repeat;
+    background-size: cover;
+}
+
 .loader {
     right: 10px;
     top: 10px;
@@ -84,10 +89,11 @@
     height: 100%;
 }
 
-.ellipsis{
-    text-align:center;
+.ellipsis {
+    text-align: center;
     align-content: center;
 }
+
 .food [class*='col-'] {
     min-width: 150px;
     max-width: 172px;
