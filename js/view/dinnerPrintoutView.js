@@ -25,7 +25,7 @@ class DinnerPrintoutView {
 
         const imageBox = document.createElement('div');
         const image = document.createElement('img');
-        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-240x150.jpg`;
         imageBox.classList.add('media-left');
         imageBox.classList.add('printout-image');
         imageBox.appendChild(image);
