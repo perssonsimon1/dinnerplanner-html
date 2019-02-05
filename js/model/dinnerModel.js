@@ -90,19 +90,20 @@ class DinnerModel extends Observable {
 	//Returns all ingredients for all the dishes on the menu.
 	getAllIngredients() {
 		return this.menu
-			.flatMap(dish => dish.ingredients);
+			.flatMap(dish => dish.extendedIngredients);
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	getTotalMenuPrice() {
 		return this.menu
-			.flatMap(dish => dish.ingredients)
-			.reduce((acc, val) => acc + val.price * this.numberOfGuests, 0);
+			.flatMap(dish => dish.extendedIngredients)
+			.reduce((acc, val) => acc + val.amount * this.numberOfGuests, 0);
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	addDishToMenu(dish) {
+		console.log(dish);
 		this.menu.push(dish);
 		this.notifyObservers({
 			type: 'new',
