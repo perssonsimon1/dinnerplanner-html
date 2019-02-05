@@ -55,7 +55,7 @@ class DishDetailsView {
         totalPrice.innerHTML = 'SEK ' +
             dish.extendedIngredients
             .map(ingr => ingr.amount)
-            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
+            .reduce((acc, val) => acc + val).toFixed(2) * this.model.getNumberOfGuests();
 
         footerRow.appendChild(empt1);
         footerRow.appendChild(empt2);
@@ -113,14 +113,19 @@ class DishDetailsView {
         return row;
     }
 
+    showError(error) {
+        const alert = document.querySelector('#alert');
+        alert.innerHTML = 'Dishes could not be fetched, check your network connection';
+        alert.style.display = 'block';
+    }
+
     update() {
         this.clear();
         this.loader.style.display = 'block';
         console.log(this.loader.style.display);
         this.model.getCurrentDish().then(dish => {
             if (dish) this.render(dish);
-            this.loader.style.display = 'none';
-        }).catch(console.log);
+        }).catch(this.showError);
     }
 
 
