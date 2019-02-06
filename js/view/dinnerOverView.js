@@ -40,16 +40,16 @@ class DinnerOverView {
     createItem(dish, numberOfGuests) {
         var outerdiv = document.createElement('div');
         var price = document.createElement('p');
-        const currprice = dish.ingredients
-            .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * numberOfGuests;
+        const currprice = Number(dish.extendedIngredients
+            .map(ingr => ingr.amount)
+            .reduce((acc, val) => acc + val) * numberOfGuests).toFixed(2);
         price.innerHTML = currprice + ' SEK';
         var div = document.createElement('div');
         div.classList.add('dish-item', 'col-auto', 'col-sm-auto', 'col-lg-auto', 'text-center', 'border', 'border-dark', 'px-0', 'py-0', 'd-inline-flex-colum');
         var paragraph = document.createElement('p');
-        paragraph.innerHTML = dish.name;
+        paragraph.innerHTML = dish.title;
         var image = document.createElement('img');
-        image.src = './images/' + dish.image;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-90x90.jpg`;
         image.height = 127;
         image.width = 170;
         image.classList.add('center-image');

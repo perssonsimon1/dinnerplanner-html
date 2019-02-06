@@ -29,7 +29,7 @@ class SidebarView {
 
         var numberOfGuests = this.model.getNumberOfGuests();
         peopleInput.value = numberOfGuests;
-        total.innerHTML = 'Total: $' + this.model.getTotalMenuPrice();
+        total.innerHTML = 'Total: $' + Number(this.model.getTotalMenuPrice()).toFixed(2);
     }
 
     clear() {
@@ -42,12 +42,12 @@ class SidebarView {
     createTableRow(dish) {
         const row = document.createElement('tr');
         const name = document.createElement('td');
-        name.innerHTML = dish.name;
+        name.innerHTML = dish.title;
         const cost = document.createElement('td');
         cost.innerHTML = 'SEK ' +
-            dish.ingredients
-            .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
+            Number(dish.extendedIngredients
+                .map(ingr => ingr.amount)
+                .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests()).toFixed(2);
 
         row.appendChild(name);
         row.appendChild(cost);

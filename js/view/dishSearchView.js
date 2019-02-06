@@ -20,9 +20,9 @@ class DishSearchView {
         this.searchBtn = container.querySelector('#search');
         this.filterInput = container.querySelector('#dish');
         this.optionsMenu = this.container.querySelector("#options");
-        this.optionsMenu.append(new Option("Starter", "starter"));
+        /*this.optionsMenu.append(new Option("Starter", "starter"));
         this.optionsMenu.append(new Option("Main Dish", "main dish"));
-        this.optionsMenu.append(new Option("Dessert", "dessert"));
+        this.optionsMenu.append(new Option("Dessert", "dessert")); */
         //const btnText = "search"
     }
 

@@ -16,6 +16,9 @@
 </head>
 
 <body>
+	<div class="alert alert-danger" id="alert" role="alert">
+
+	</div>
 	<h1 class="title my-0">Dinner planner</h1>
 	<div class="container-float overflow-hidden">
 		<div class="row mx-0">
@@ -53,7 +56,19 @@
 						</div>
 						<div class="col-sm-12 col-md-4">
 							<select name="category" id="options">
-								<option value="">All</option>
+								<option value="main course">Main Course</option>
+								<option value="side dish">Side Dish</option>
+								<option value="dessert">Dessert</option>
+								<option value="appetizer">Appetizer</option>
+								<option value="salad">Salad</option>
+								<option value="bread">Bread</option>
+								<option value="breakfast">Breakfast</option>
+								<option value="soup">Soup</option>
+								<option value="beverage">Beverage</option>
+								<option value="sauce">Sauce</option>
+								<option value="drink">Drink</option>
+
+								<!--main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink -->
 							</select>
 						</div>
 						<div class="col-sm-12 col-md-4">
@@ -63,9 +78,11 @@
 				</div>
 				<div id="dishItemView" class="col-12 px-0">
 					<div id="dishrows" class="row food border border-dark justify-content-center mx-auto"></div>
+					<div class="loader"></div>
 				</div>
 				<div id="dinnerPrintoutView" class="col-12"></div>
 				<div id="dishDetailsView" class="row pl-3">
+					<div class="loader"></div>
 					<div id="dishDetails-outerBox" class='col-sm-12 col-md-6 p-3'>
 						<button id="detailsBack" class="btn btn-light">Back to Search</button>
 					</div>

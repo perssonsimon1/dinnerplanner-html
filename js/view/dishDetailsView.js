@@ -4,10 +4,9 @@ class DishDetailsView {
         model.addObserver(this);
         this.container = container;
         this.model = model;
-        const dish = this.model.getCurrentDish();
+        this.loader = this.container.querySelector('.loader');
         this.goBackBtn = document.createElement('button');
         this.addToMenuBtn = document.createElement('button');
-        if (dish) this.render(dish);
     }
 
 
@@ -17,13 +16,13 @@ class DishDetailsView {
         overviewBox.classList.add('col-sm-12', 'col-md-6', 'p-3');
 
         const title = document.createElement('h4');
-        title.innerHTML = dish.name;
+        title.innerHTML = dish.title;
 
         const image = document.createElement('img');
-        image.src = './images/' + dish.image;
+        image.src = `https://spoonacular.com/recipeImages/${dish.id}-312x231.jpg`;
 
         const desc = document.createElement('p');
-        desc.innerHTML = dish.type;
+        desc.innerHTML = dish.vegan;
 
         this.goBackBtn.innerHTML = "Back to search";
         this.goBackBtn.classList.add('btn', 'btn-light');
@@ -42,7 +41,7 @@ class DishDetailsView {
 
         const table = document.createElement('table');
         const tableBody = document.createElement('tbody');
-        dish.ingredients
+        dish.extendedIngredients
             .map(ingr => this.ingredientsRow(ingr, this.model.getNumberOfGuests()))
             .forEach(row => tableBody.appendChild(row));
 
@@ -54,9 +53,9 @@ class DishDetailsView {
         const empt2 = document.createElement('td');
         const totalPrice = document.createElement('td');
         totalPrice.innerHTML = 'SEK ' +
-            dish.ingredients
-            .map(ingr => ingr.price)
-            .reduce((acc, val) => acc + val) * this.model.getNumberOfGuests();
+            dish.extendedIngredients
+            .map(ingr => ingr.amount)
+            .reduce((acc, val) => acc + val).toFixed(2) * this.model.getNumberOfGuests();
 
         footerRow.appendChild(empt1);
         footerRow.appendChild(empt2);
@@ -78,32 +77,34 @@ class DishDetailsView {
         const preparationTitle = document.createElement('h4');
         preparationTitle.innerHTML = "Preparation";
         const preparationText = document.createElement('p');
-        preparationText.innerHTML = dish.description;
+        preparationText.innerHTML = dish.instructions;
 
         preparationBox.appendChild(preparationTitle);
         preparationBox.appendChild(preparationText);
 
-
         this.container.appendChild(overviewBox);
         this.container.appendChild(ingredientsBox);
         this.container.appendChild(preparationBox);
+
     }
 
     clear() {
         while (this.container.firstChild) {
             this.container.removeChild(this.container.firstChild);
+            
         }
+        this.container.appendChild(this.loader);
     }
 
     ingredientsRow(ingredient, numberOfGuests) {
         const row = document.createElement('tr');
 
         const amount = document.createElement('td');
-        amount.innerHTML = ingredient.quantity * numberOfGuests + ' ' + ingredient.unit;
+        amount.innerHTML = Number(ingredient.amount).toFixed(2);
         const ingr = document.createElement('td');
         ingr.innerHTML = ingredient.name;
         const price = document.createElement('td');
-        price.innerHTML = 'SEK ' + (ingredient.price * numberOfGuests);
+        price.innerHTML = 'SEK ' + Number(ingredient.amount * numberOfGuests).toFixed(2);
 
         row.appendChild(amount);
         row.appendChild(ingr);
@@ -112,12 +113,20 @@ class DishDetailsView {
         return row;
     }
 
+    showError(error) {
+        const alert = document.querySelector('#alert');
+        alert.innerHTML = 'Dishes could not be fetched, check your network connection';
+        alert.style.display = 'block';
+    }
+
     update() {
-        let newDish = this.model.getCurrentDish();
-        if (newDish){
         this.clear();
-        this.render(this.model.getCurrentDish());
-        }
+        this.loader.style.display = 'block';
+        console.log(this.loader.style.display);
+        this.model.getCurrentDish().then(dish => {
+            if (dish) this.render(dish);
+            this.loader.style.display = 'none';
+        }).catch(this.showError);
     }
 
 
